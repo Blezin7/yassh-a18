@@ -17,10 +17,4 @@ export class CareerComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  reload(){
-    this.document.location.reload();
-  }
-
-
 }

@@ -14,8 +14,5 @@ export class AccessDeniedComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  reload(){
-    this.document.location.reload();
-  }
 
 }

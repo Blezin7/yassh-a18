@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    
   }
 
   async login(): Promise<void> {

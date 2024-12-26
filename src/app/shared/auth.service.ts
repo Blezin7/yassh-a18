@@ -1,9 +1,10 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { ChangeDetectorRef, Inject, Injectable, Signal, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { User, UserInterface, Roles } from '../user.interface';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
     private afs: AngularFirestore,
     private fireauth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.fireauth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -69,9 +71,9 @@ export class AuthService {
   
           this.currentUserSignal.set(user);
           sessionStorage.setItem('currentUser', JSON.stringify(user));
-  
           this.toastr.success('Welcome');
           this.router.navigate(['/products/prod-details']);
+          
         } else {
           console.error('No user data found in Firestore.');
         }

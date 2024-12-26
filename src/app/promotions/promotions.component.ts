@@ -14,14 +14,21 @@ import { AuthService } from '../shared/auth.service';
 export class PromotionsComponent implements OnInit {
   currentUser: any = null;
 
-  constructor(private auth : AuthService, @Inject(DOCUMENT) private document: Document) { }
+  constructor() { }
 
   ngOnInit(): void {
+    this.loadUserFromSession();
+  }
+
+  private loadUserFromSession(): void {
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
   }
 
   reload(){
-    const user = sessionStorage.getItem('currentUser');
-    this.document.location.reload();
+    this.loadUserFromSession()
   }
 
 }

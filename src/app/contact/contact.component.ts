@@ -17,9 +17,4 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  reload(){
-    this.document.location.reload();
-  }
-
 }

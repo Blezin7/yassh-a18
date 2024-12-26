@@ -17,11 +17,16 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.auth.currentUserSignal();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.loadUserFromSession();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
-
-  reload(){
-    this.document.location.reload();
+  
+  private loadUserFromSession(): void {
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
   }
-
 }

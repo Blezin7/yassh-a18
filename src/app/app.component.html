@@ -1,93 +1,80 @@
 <div id="colorlib-page">
-  <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-  <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-    <h1 id="colorlib-logo" (click)="reload()"><a routerLink="/home"><img src="assets/images/logo.jpg" class="img-responsive"></a></h1>
-    <nav id="colorlib-main-menu" role="navigation">
-      <ul>
-        <li routerLinkActive="colorlib-active" (click)="reload()"><a routerLink="/home">Home</a></li>
-        <li routerLinkActive="colorlib-active" (click)="reload()"><a routerLink="/about-us">About Us</a></li>
-        <li routerLinkActive="colorlib-active" (click)="reload()"><a routerLink="/products">Products</a></li>
-        <li routerLinkActive="colorlib-active" (click)="reload()"><a routerLink="/promotions">Promotions</a></li>
-        <li routerLinkActive="colorlib-active" (click)="reload()"><a routerLink="/contact">Contact</a></li>
-        <li routerLinkActive="colorlib-active" *ngIf="adminOnly()">
-            <a routerLink="/signup">Add User</a>
-        </li>
-        <li routerLinkActive="colorlib-active" *ngIf="currentUser">
-            <a routerLink="/login" (click)="logOut()">Logout</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="colorlib-footer">
-      <p><small>&copy; 
-Copyright &copy; 2022
-</small></p>
-      <ul>
-        <li><a href="#"><i class="icon-facebook2"></i></a></li>
-        <li><a href="#"><i class="icon-twitter2"></i></a></li>
-        <li><a href="#"><i class="icon-instagram"></i></a></li>
-        <li><a href="#"><i class="icon-linkedin2"></i></a></li>
-      </ul>
-    </div>
-  </aside>
-
-  <div id="colorlib-main">
-    
+    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+    <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+      <h1 id="colorlib-logo"><a routerLink="/home"><img src="assets/images/logo.jpg" class="img-responsive"></a></h1>
+      <nav id="colorlib-main-menu" role="navigation">
+        <ul>
+          <li routerLinkActive="colorlib-active"><a routerLink="/home">Home</a></li>
+          <li routerLinkActive="colorlib-active"><a routerLink="/about-us">About Us</a></li>
+          <li routerLinkActive="colorlib-active"><a routerLink="/products">Products</a></li>
+          <li routerLinkActive="colorlib-active"><a routerLink="/promotions">Promotions</a></li>
+          <li routerLinkActive="colorlib-active"><a routerLink="/contact">Contact</a></li>
+          <li routerLinkActive="colorlib-active" *ngIf="adminOnly()">
+              <a routerLink="/signup">Add User</a>
+          </li>
+          <li routerLinkActive="colorlib-active" *ngIf="currentUser">
+              <a routerLink="/login" (click)="logOut()">Logout</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="colorlib-footer">
+        <p><small>&copy; Copyright &copy; 2022</small></p>
+        <ul>
+          <li><a href="#"><i class="icon-facebook2"></i></a></li>
+          <li><a href="#"><i class="icon-twitter2"></i></a></li>
+          <li><a href="#"><i class="icon-instagram"></i></a></li>
+          <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+        </ul>
+      </div>
+    </aside>
+  
+    <div id="colorlib-main">
       <router-outlet></router-outlet>
-     
-          <div id="get-in-touch" class="colorlib-bg-color">
-              <div class="colorlib-narrow-content ft">
-              
-                  <div class="row">
-                      <div class="col-md-4">
-                          <h2>Get in Touch!</h2>
-                          <p class="colorlib-lead">50, Kallang Pudding Road, 05-01 A AMA Building, Singapore 349326</p>
-                          <p (click)="reload()"><a routerLink="/contact" class="btn btn-primary btn-learn">Contact Us</a></p>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 style="margin-bottom:10px;">Medical Channel</h4>
-                          <ul>
-                              <li (click)="reload()"><a routerLink="/promotions">Bone Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Women's Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Men's Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Nerve Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">GI Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Renal Health</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Immunomodulator</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Sleepcare</a></li>
-                          </ul>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 style="margin-bottom:10px;" (click)="reload()"><a routerLink="/promotions">Retail Channel</a></h4>
-                          <!-- <ul>
-                              <li (click)="reload()"><a routerLink="/promotions">C-Core</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">D-Core</a></li>
-                              <li (click)="reload()"><a routerLink="/promotions">Diacare</a></li>
-                          </ul> -->
-                      </div>
-                      <div class="col-md-2">
-                          <h4 style="margin-bottom:10px;">Sitemap</h4>
-                          <ul>
-                              <li (click)="reload()"><a routerLink="/about-us">About Us</a></li>
-                              <li (click)="reload()"><a routerLink="/about-us">- Vision</a></li>
-                              <li (click)="reload()"><a routerLink="/about-us">- Mission</a></li>
-                              <li (click)="reload()"><a routerLink="/about-us">- Our Core Values</a></li>
-                          </ul>
-                      </div>
-                      <div class="col-md-2">
-                          <h4 style="margin-bottom:10px;">Others</h4>
-                          <ul>
-                              <li (click)="reload()"><a routerLink="/career">Career</a></li>
-                              <li (click)="reload()"><a routerLink="/team-work">Teamwork</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              
-              </div>
-              </div>
-
-
+      
+      <div id="get-in-touch" class="colorlib-bg-color">
+        <div class="colorlib-narrow-content ft">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Get in Touch!</h2>
+              <p class="colorlib-lead">50, Kallang Pudding Road, 05-01 A AMA Building, Singapore 349326</p>
+              <p><a routerLink="/contact" class="btn btn-primary btn-learn">Contact Us</a></p>
+            </div>
+            <div class="col-md-2">
+              <h4 style="margin-bottom:10px;">Medical Channel</h4>
+              <ul>
+                <li><a routerLink="/promotions">Bone Health</a></li>
+                <li><a routerLink="/promotions">Women's Health</a></li>
+                <li><a routerLink="/promotions">Men's Health</a></li>
+                <li><a routerLink="/promotions">Nerve Health</a></li>
+                <li><a routerLink="/promotions">GI Health</a></li>
+                <li><a routerLink="/promotions">Renal Health</a></li>
+                <li><a routerLink="/promotions">Immunomodulator</a></li>
+                <li><a routerLink="/promotions">Sleepcare</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h4 style="margin-bottom:10px;"><a routerLink="/promotions">Retail Channel</a></h4>
+            </div>
+            <div class="col-md-2">
+              <h4 style="margin-bottom:10px;">Sitemap</h4>
+              <ul>
+                <li><a routerLink="/about-us">About Us</a></li>
+                <li><a routerLink="/about-us">- Vision</a></li>
+                <li><a routerLink="/about-us">- Mission</a></li>
+                <li><a routerLink="/about-us">- Our Core Values</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h4 style="margin-bottom:10px;">Others</h4>
+              <ul>
+                <li><a routerLink="/career">Career</a></li>
+                <li><a routerLink="/team-work">Teamwork</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
   </div>
-
-
-
-</div>
+  

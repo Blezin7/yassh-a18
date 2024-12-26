@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-productdetails',
@@ -10,9 +11,17 @@ import { AuthService } from '../shared/auth.service';
 export class ProductdetailsComponent implements OnInit {
   currentUser: any = null;
 
-  constructor(private auth : AuthService) { }
+  constructor(public auth: AuthService,) { }
 
   ngOnInit(): void {
+    this.currentUser = this.auth.currentUserSignal();
+    this.loadUserFromSession();
   }
 
+  private loadUserFromSession(): void {
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
+  }
 }
