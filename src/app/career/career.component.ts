@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Inject } from '@angular/core';  
-import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-career',
@@ -12,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
 export class CareerComponent implements OnInit {
 
 
-  constructor(@Inject(DOCUMENT) private document: Document) { 
+  constructor() { 
   }
 
   ngOnInit(): void {

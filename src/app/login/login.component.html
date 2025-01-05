@@ -1,18 +1,21 @@
-<div class="colorlib-work">
+<div class="colorlib-work" *ngIf="!currentUser">
     <div class="colorlib-narrow-content">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-md-pull-3" >
-                <h2 class="colorlib-heading">Login</h2>
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3">
+                <div class="login">
+                    <h2 class="colorlib-heading">Login</h2>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 login">
                 <form method="post" action="#" id="contactform">
                     <div class="form-group">
                         <input type="text" name="Email" class="form-control" placeholder="Email *" [(ngModel)]="email">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password *" [(ngModel)]="password">
+                        <input type="password" name="password" class="form-control" placeholder="Password *"
+                            [(ngModel)]="password">
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-send-message" (click)="login()" value="Submit">
@@ -20,6 +23,31 @@
                 </form>
             </div>
             <div class="col-md-7"></div>
+        </div>
+    </div>
+</div>
+<div class="colorlib-work" *ngIf="currentUser">
+    <div class="colorlib-narrow-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3">
+                <div class="login">
+                    <span class="heading-meta-red">Sorry, You are already logged in.</span>
+                    <h2 class="colorlib-heading-red">Login</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h1 style="padding: 10% 0px;">Sorry, You're already a user to so perform <br />Click to view our
+                            <a routerLink="/products">Products</a>
+                            and latest <a routerLink="/promotions">Promotions.</a><br> or return <a
+                                routerLink="/home">Home</a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

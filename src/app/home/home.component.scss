@@ -1,0 +1,35 @@
+.homeslide {
+    background: #00000094 !important;
+    border: 1px solid gray;
+  }
+  .homeslide h2,
+  h4 {
+    color: white !important;
+  }
+  .homeslide span {
+    font-weight: 600 !important;
+    font-size: 40px;
+  }
+  .homeslide h1 {
+    color: #019fbe !important;
+    font-weight: 600 !important;
+    font-size: large !important;
+    font-size: 40px !important;
+    text-align: center;
+  }
+  
+  .btn {
+    color: white !important;
+  }
+  .subtop {
+    color: white !important;
+  }
+  .mid{
+    margin-left: 10%;
+  }
+  @media (max-width: 991px) {
+    .mid{
+      margin-left: 0%;
+    }
+  }
+  

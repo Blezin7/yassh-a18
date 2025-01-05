@@ -2,11 +2,7 @@
 	
 	'use strict';
 
-	if (window.animationInitialized) {
-		return; // Prevent re-running the animation setup
-	  }
 
-	  window.animationInitialized = true;
 
 	var isMobile = {
 		Android: function() {

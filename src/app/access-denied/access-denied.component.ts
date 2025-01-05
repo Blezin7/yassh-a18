@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
     selector: 'app-access-denied',
@@ -8,11 +8,20 @@ import { Component, Inject, OnInit } from '@angular/core';
     standalone: false
 })
 export class AccessDeniedComponent implements OnInit {
+  currentUser: any = null;
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(private auth : AuthService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.auth.currentUserSignal();
+    this.loadUserFromSession();
   }
-  
+
+  private loadUserFromSession(): void {
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
+  }
 
 }

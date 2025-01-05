@@ -2,13 +2,15 @@
     <div class="colorlib-narrow-content">
         <div class="row">
             <!-- animate-box data-animate-effect="fadeInLeft" -->
-            <div class="col-md-6 col-md-offset-3 col-md-pull-3" >
-                <h2 class="colorlib-heading">Add New User</h2>
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3">
+                <div class="signup">
+                    <h2 class="colorlib-heading">Add New User</h2>
+                </div>
             </div>
         </div>
-        
+
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 signup">
                 <form method="post" action="#" id="contactform">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Name *" [(ngModel)]="username">
@@ -17,10 +19,12 @@
                         <input type="text" name="email" class="form-control" placeholder="Email *" [(ngModel)]="email">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="contactno" class="form-control" placeholder="Contact No *" [(ngModel)]="contactno">
+                        <input type="text" name="contactno" class="form-control" placeholder="Contact No *"
+                            [(ngModel)]="contactno">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password *" [(ngModel)]="password">
+                        <input type="password" name="password" class="form-control" placeholder="Password *"
+                            [(ngModel)]="password">
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-send-message" value="Submit" (click)="signup()">

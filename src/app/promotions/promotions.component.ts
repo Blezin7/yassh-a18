@@ -1,9 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
-import { Inject } from '@angular/core';    
-import { DOCUMENT } from '@angular/common';
-import { AuthService } from '../shared/auth.service';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-promotions',

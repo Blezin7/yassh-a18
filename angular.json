@@ -44,7 +44,9 @@
             "styles": [
               "src/styles.scss",
               "src/assets/css/animate.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/aos/dist/aos.css"
             ],
             "scripts": [
               "node_modules/jquery-countto/jquery.countTo.js"

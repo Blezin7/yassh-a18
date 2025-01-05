@@ -5,29 +5,32 @@ import { ApproveComponent } from './approve/approve.component';
 import { CareerComponent } from './career/career.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ProductsComponent } from './products/products.component';
 import { PromotionsComponent } from './promotions/promotions.component';
-import { SignupComponent } from './signup/signup.component';
 import { TeamWorkComponent } from './team-work/team-work.component';
 import { AuthguardService } from './shared/authguard.service';
-import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { JoinUsComponent } from './join-us/join-us.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'products', component: ProductsComponent },
+  { path: 'products', loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent) },
   { path: 'promotions', component: PromotionsComponent },
-  { path: 'products/prod-details', component: ProductdetailsComponent, canActivate: [AuthguardService], data: { role: 'subscriber' } },
+  { path: 'products/proditem/:id', component: ProductdetailsComponent, 
+    canActivate: [AuthguardService], data: { role: 'subscriber'} 
+  },
   { path: 'contact', component: ContactComponent },
   { path: 'career', component: CareerComponent },
   { path: 'team-work', component: TeamWorkComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent, canActivate: [AuthguardService], data: { role: 'admin' } },
+  { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
+  { path: 'signup', loadComponent: () => import('./signup/signup.component').then(m => m.SignupComponent), 
+    canActivate: [AuthguardService], data: { role: 'admin' } 
+  },
   { path: 'approve', component: ApproveComponent },
   { path: 'access-denied', component: AccessDeniedComponent },
+  { path: 'join-us', component: JoinUsComponent},
   { path: '**', redirectTo: '' },
 ];
 

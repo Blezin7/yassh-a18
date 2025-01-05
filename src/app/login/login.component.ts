@@ -9,14 +9,22 @@ import { ToastrService } from 'ngx-toastr';
   standalone: false
 })
 export class LoginComponent implements OnInit {
-
+  currentUser: any = null;
   email: string = '';
   password: string = '';
 
   constructor(private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    
+    this.currentUser = this.auth.currentUserSignal();
+    this.loadUserFromSession();
+  }
+
+  private loadUserFromSession(): void {
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
   }
 
   async login(): Promise<void> {

@@ -12,7 +12,7 @@ import { TeamWorkComponent } from './team-work/team-work.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ApproveComponent } from './approve/approve.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './shared/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -23,6 +23,7 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     ToastrModule.forRoot({closeButton: true}),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    NgxCaptchaModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

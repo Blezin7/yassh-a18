@@ -1,3 +1,24 @@
-<h1>Access Denied</h1>
-<p>You do not have permission to access this page.</p>
-<a  routerLink="/home">Return to Home</a>
+<div class="colorlib-work">
+    <div class="colorlib-narrow-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3">
+                <div class="access-denied">
+                    <span class="heading-meta-red">Sorry, You do not have permission to access this page.</span>
+                    <p class="colorlib-heading-red">403 - Access Denied</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h1 style="padding: 10% 0px;" *ngIf="!currentUser">Sorry, You need to be user to access the <a routerLink="/login">Login</a><br/>to view our products
+                            and latest promotions.<br> or return <a routerLink="/home">Home</a></h1>
+                        <h1 style="padding: 10% 0px;" *ngIf="currentUser">Sorry, admin only have the permission.<br/>Click to view our <a routerLink="/products">Products</a>
+                            and latest <a routerLink="/promotions">Promotions.</a><br> or return <a routerLink="/home">Home</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

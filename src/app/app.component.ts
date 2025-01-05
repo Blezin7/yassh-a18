@@ -1,4 +1,4 @@
-import { Component, Inject, ChangeDetectorRef, effect, OnInit } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef, effect, OnInit, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from './shared/auth.service';
@@ -18,13 +18,19 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     public auth: AuthService,
-    @Inject(DOCUMENT) private document: Document,
     private changeDetector: ChangeDetectorRef
   ) {
     effect(() => {
       this.currentUser = this.auth.currentUserSignal();
       this.changeDetector.detectChanges();
     });
+  }
+
+  showText: boolean = false;
+
+  isRouteActive(route: string): boolean {
+    this.showText = true;
+    return this.router.isActive(route, true);
   }
 
   ngOnInit(): void {
@@ -34,7 +40,7 @@ export class AppComponent implements OnInit {
     this.runAnimations();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
-
+  
   adminOnly(): boolean {
     return this.currentUser?.roles?.admin === true;
   }
@@ -44,21 +50,20 @@ export class AppComponent implements OnInit {
   }
 
   private runAnimations(): void {
-    setTimeout(() => {
-      const currentRoute = this.router.url;
-      if (currentRoute === '/' || currentRoute.includes('home')) {
-        this.fullHeight();
-        this.sliderMain();
-      }
-      this.counter();
-      this.contentAnimations();
-      this.burgerMenu();
-      this.mobileMenuOutsideClick();
-      this.stickyFunction();
-      this.owlCrouselFeatureSlide();
-    }, 100);
+    const currentRoute = this.router.url;
+    if (currentRoute === '/' || currentRoute.includes('home')) {
+      this.fullHeight();
+      this.sliderMain();
+    }
+    this.initCounter();
+    this.initIntersectionObserverAnimations();
+    this.burgerMenu();
+    this.mobileMenuOutsideClick();
+    this.stickyFunction();
+    this.owlCrouselFeatureSlide();
+    this.isMobile();
   }
-  
+
   private fullHeight(): void {
     const setFullHeight = () => {
       const fullHeightElements = document.querySelectorAll('.js-fullheight') as NodeListOf<HTMLElement>;
@@ -69,41 +74,42 @@ export class AppComponent implements OnInit {
     setFullHeight();
     window.addEventListener('resize', setFullHeight);
   }
-  
 
-  private counter(): void {
-    const counterElements = document.querySelectorAll('.js-counter') as NodeListOf<HTMLElement>;
-    counterElements.forEach(el => {
-      const countTo = parseInt(el.getAttribute('data-count-to') || '0', 10);
-      let currentValue = 0;
-
-      const interval = setInterval(() => {
-        currentValue += Math.ceil(countTo / 100);
-        if (currentValue >= countTo) {
-          currentValue = countTo;
-          clearInterval(interval);
-        }
-        el.textContent = currentValue.toString();
-      }, 30);
+  private initCounter(): void {
+    ($('.js-counter') as any).countTo({
+      formatter: (value: number, options: any) => {
+        return value.toFixed(options.decimals);
+      },
     });
   }
 
-  private contentAnimations(): void {
-    const elements = document.querySelectorAll('.animate-box') as NodeListOf<HTMLElement>;
+  private initIntersectionObserverAnimations(): void {
+    const elementsToAnimate = document.querySelectorAll('.animate-box');
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-            const effect = entry.target.getAttribute('data-animate-effect') || 'fadeInUp';
-            entry.target.classList.add(effect, 'animated');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const effect = el.getAttribute('data-animate-effect');
+
+          if (effect === 'fadeIn') {
+            el.classList.add('fadeIn', 'animated');
+          } else if (effect === 'fadeInLeft') {
+            el.classList.add('fadeInLeft', 'animated');
+          } else if (effect === 'fadeInRight') {
+            el.classList.add('fadeInRight', 'animated');
+          } else {
+            el.classList.add('fadeInUp', 'animated');
           }
-        });
-      },
-      { threshold: 0.85 }
-    );
 
-    elements.forEach(el => observer.observe(el));
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.85 });
+
+    elementsToAnimate.forEach(element => {
+      observer.observe(element);
+    });
   }
 
   private burgerMenu(): void {
@@ -166,6 +172,7 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
   private stickyFunction(): void {
     const stickyElement = document.getElementById('sticky_item');
     const stickyParent = document.querySelector('.sticky-parent');

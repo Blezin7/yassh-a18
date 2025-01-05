@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AuthService {
   public currentUserSignal = signal<UserInterface | null>(null);
+  private redirectUrl: string | null = null;
 
   constructor(
     private afs: AngularFirestore,
@@ -46,6 +47,14 @@ export class AuthService {
     }
   }
 
+  setRedirect(url: string): void {
+    this.redirectUrl = url;
+  }
+
+  getRedirect(): string | null {
+    return this.redirectUrl;
+  }
+
   isAuthenticated(): boolean {
     return this.currentUserSignal() !== null;
   }
@@ -72,8 +81,8 @@ export class AuthService {
           this.currentUserSignal.set(user);
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.toastr.success('Welcome');
-          this.router.navigate(['/products/prod-details']);
-          
+          const redirectUrl = this.getRedirect() || '/';
+          this.router.navigate([redirectUrl]);
         } else {
           console.error('No user data found in Firestore.');
         }
