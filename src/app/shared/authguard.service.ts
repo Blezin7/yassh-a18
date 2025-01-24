@@ -9,6 +9,7 @@ import { Roles, User } from '../user.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthguardService {
   constructor(
     private firestore: AngularFirestore,
@@ -48,7 +49,7 @@ export class AuthguardService {
     } else {
       console.warn('No user is logged in. Redirecting to login.');
       this.auth.setRedirect(state.url);
-      this.router.navigate(['/access-denied']);
+      this.router.navigate(['/login']);
       return of(false);
     }
   }

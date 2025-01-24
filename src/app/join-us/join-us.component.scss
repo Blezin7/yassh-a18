@@ -1,37 +1,195 @@
-.heading h1{
-    font-size: 300%;
-    color: #00b7ff;
-    text-align: center;
+.heading {
+  position: fixed;
+  width: 100%;
+  z-index: 2;
 }
-h3{
+.heading h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #019fbe;
+  text-align: center;
+  background: white;
+  padding: 10px;
+}
+.title {
+  font-size: 50px;
+}
+h3 {
+  font-size: 30px;
+  color: gray;
+  text-align: center;
+}
+p {
+  font-size: 20px;
+  color: #019fbe;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.common span {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.card img {
+  padding: 38px 10px;
+  display: block;
+  border-radius: 10px;
+}
+
+.card .text-overlay button {
+  display: flex;
+  justify-content: center;
+}
+
+.card h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #019fbe;
+  text-align: center;
+  margin: 20px;
+}
+.card p {
+  font-size: 15px;
+  color: #ffffff;
+}
+.butpara {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.img-fluid {
+  width: 80%;
+  height: 350px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-size: 20px;
+  color: #019fbe;
+  margin-bottom: 10px;
+}
+.form-group input {
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #019fbe;
+  border-radius: 5px;
+}
+.form-group textarea {
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #019fbe;
+  border-radius: 5px;
+}
+form button {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #019fbe;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+form button:hover {
+  background-color: #019fbe;
+}
+.form-group input:focus {
+  outline: none;
+}
+.banner {
+  width: 100%;
+  height: 30vh;
+  background: #019fbe;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+}
+.banner-text a {
+  color: #ffffff !important;
+}
+.banner-text h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.692);
+}
+
+.card {
+  padding: 0px;
+  margin: 0px;
+  // position: relative;
+
+  margin: 4%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  // background-image: url('/assets/images/cardbg5.png'); 
+  background: #019fbe;
+  // background-size: 100% 100%;
+  // background-position: center;/* Leading '/' means it's from the public root */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+ 
+}
+// .card:hover {
+//   background: #000000ad;
+// }
+.card-bottom{
+padding: 20px;
+  background: white;
+}  // padding: 40px;
+.card-top{
+  display: flex; 
+  justify-content: center;
+}
+.card-top h1{
+color: white;
+font-size: 30px;
+}
+.card-bottom p{
+color: black;
+}
+
+.card-bottom span{
+  color: black;
+  }
+.bgimg {
+  z-index: -2;
+  width: auto;
+  height: 100%;
+  background-size: cover;
+  position: fixed;
+}
+.text-overlay h1{
+  font-size: 40px;
+  color:white;
+  // margin-top: 15%;
+  font-weight: 400;
+  // background: #019fbe;
+  // background-size:cover;
+}
+.text-overlay p{
+color:black;
+}
+.text-overlay span{
+  color: black;
+}
+@media (max-width:477px){
+  .heading h1{
     font-size: 30px;
-    color:  #00b7ff;
-    text-align: center;
-}
-p{
-    font-size: 20px;
-    color:  #00b7ff;
-    text-align: center;
-}
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.card{
-    width: 80%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-}
-.card h1{
-    font-size: 30px;
-    color: #00b7ff;
-    text-align: center;
-}
-.card p{
-    font-size: 20px;
-    color:black;
-    text-align: center;
+  }
 }

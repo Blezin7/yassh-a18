@@ -1,31 +1,17 @@
-<div class="colorlib-work prodcon">
-    <div class="colorlib-narrow-content">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-md-pull-3">
-                <div class="product">
-                    <span class="heading-meta">Products</span>
-                    <h2 class="colorlib-heading">Our Products</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        <b>Medical Channel</b>
-                    </a>
-                    <a routerLink="proditem/1" class="list-group-item list-group-item-action">Bone Health</a>
-                    <a routerLink="proditem/2" class="list-group-item list-group-item-action">Women's Health</a>
-                    <a routerLink="proditem/3" class="list-group-item list-group-item-action">Men's Health</a>
-                    <a routerLink="proditem/4" class="list-group-item list-group-item-action">Nerve Health</a>
-                    <a routerLink="proditem/5" class="list-group-item list-group-item-action">GI Health</a>
-                    <a routerLink="proditem/6" class="list-group-item list-group-item-action">Renal Health</a>
-                    <a routerLink="proditem/7" class="list-group-item list-group-item-action">Immunomodulator</a>
-                    <a routerLink="proditem/8" class="list-group-item list-group-item-action">Sleepcare</a>
-                </div>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
+<div class="products-container">
+    <div class="products-header">
+      <h1 class="colorlib-heading">Our Products</h1>
+      <div class="tabs">
+        <a
+          *ngFor="let product of productDetails | keyvalue"
+          [routerLink]="'proditem/' + product.key"
+          routerLinkActive="active"
+          class="tab"
+          (click)="setActiveTab(product.key)"
+        >
+          {{ formatProductName(product.value) }}
+        </a>
+      </div>
     </div>
-</div>
+  </div>
+  <router-outlet></router-outlet>

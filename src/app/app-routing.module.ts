@@ -11,16 +11,19 @@ import { AuthguardService } from './shared/authguard.service';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { JoinUsComponent } from './join-us/join-us.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { CataloguedetailsComponent } from './cataloguedetails/cataloguedetails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'products', loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent) },
-  { path: 'promotions', component: PromotionsComponent },
-  { path: 'products/proditem/:id', component: ProductdetailsComponent, 
+  { path: 'products', loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent),
+    children:[  { path: 'proditem/:id', component: ProductdetailsComponent, 
     canActivate: [AuthguardService], data: { role: 'subscriber'} 
-  },
+  },]
+   },
+  { path: 'promotions', component: PromotionsComponent },
+  { path: 'products/cataloguedetails/:id', component: CataloguedetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'career', component: CareerComponent },
   { path: 'team-work', component: TeamWorkComponent },

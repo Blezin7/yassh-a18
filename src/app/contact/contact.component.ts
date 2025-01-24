@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+
+interface ContactForm{
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 @Component({
   selector: 'app-contact',
@@ -9,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: false,
 })
 export class ContactComponent implements OnInit {
+
   public type: 'image' | 'audio' = 'image';
   contactForm!: FormGroup;
   captchaToken: string = '';
@@ -49,6 +58,7 @@ export class ContactComponent implements OnInit {
   onSubmit(): void {
     if (this.contactForm.valid && this.captchaToken) {
       console.log('Form Data:', this.contactForm.value);
+      emailjs.send('service_sdfj9go', 'template_pn3fdzd', this.contactForm.value, {publicKey:'bHoLo4cZ0_Hv_CKGK'})
       this.toastr.success('Your message has been sent successfully.');
       this.contactForm.reset();
     } else {

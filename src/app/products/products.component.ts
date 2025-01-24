@@ -1,30 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Inject } from '@angular/core';  
-import { AuthService } from '../shared/auth.service';
 
 @Component({
-    selector: 'app-products',
-    templateUrl: './products.component.html',
-    styleUrls: ['./products.component.scss'],
-    standalone: false
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  currentUser: any = null;
+  activeTab: string = '1'; // Default active tab
 
-  constructor(private auth : AuthService, @Inject(Router) private router: Router) { 
+  productDetails: { [key: string]: string } = {
+    '1': 'bone-health ',
+    '2': "womens-health",
+    '3': "mens-health",
+    '4': 'nerve-health',
+    '5': 'gi-health',
+    '6': 'renal-health',
+    '7': 'immunomodulators',
+    '8': 'sleepcare'
+  };
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  setActiveTab(tab: string): void {
+    this.activeTab = tab;
   }
-  
-  ngOnInit(): void {
-    this.currentUser = this.auth.currentUserSignal();
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.loadUserFromSession();
-  }
-  
-  private loadUserFromSession(): void {
-    const user = sessionStorage.getItem('currentUser');
-    if (user) {
-      this.currentUser = JSON.parse(user);
-    }
+
+  formatProductName(value: string): string {
+    return value.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
   }
 }

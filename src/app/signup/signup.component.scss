@@ -1,8 +1,408 @@
-.signup{
-    margin-left: 15%;
+.colorlib-work {
+  padding: 20px 10%;
+  background-color: #f9f9f9;
 }
-@media (max-width: 991px) {
-    .signup{
-        margin-left: 2%;
-    }
+.form-group {
+  margin-bottom: 15px;
 }
+
+.btn-block {
+  width: 100%;
+}
+
+.colorlib-narrow-content.signup {
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 800px;
+  max-width: 800px;
+}
+.colorlib-narrow-content.signup label {
+  font-size: large;
+  font-weight: 500;
+}
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; /* Adjust width as needed */
+}
+
+
+@media (max-width: 641px) {
+  .colorlib-narrow-content.signup {
+    width: 400px;
+  }
+}
+@media (max-width: 531px) {
+  .colorlib-narrow-content.signup {
+    width: 300px;
+  }
+}
+.head {
+  text-align: center;
+}
+/* Style the <a> tags as buttons */
+.tab-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+  border-radius: 4px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #0056b3;
+}
+
+.tab-btn.active {
+  background-color: gray; /* Change background when active */
+}
+
+button.btn-primary {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mt-2 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+.addproduct-itemfield {
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+}
+
+.addproduct-thumbnail-img {
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #ccc;
+}
+.save {
+  margin-left: 80%;
+}
+.tab-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none; /* Remove underline */
+  border-radius: 4px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: #0056b3;
+}
+
+.tab-btn.active {
+  background-color: gray; /* Change background when active */
+}
+.mui-tabs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.mui-tabs-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  position: relative;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.mui-tabs-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.mui-tab-btn {
+  position: relative;
+  padding: 12px 16px;
+  min-width: 90px;
+  max-width: 360px;
+  min-height: 48px;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mui-tab-btn span {
+  z-index: 1;
+  font-size: medium;
+}
+
+.mui-tab-btn .mui-tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #1976d2;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mui-tab-btn.active {
+  color: #1976d2;
+}
+
+.mui-tab-btn.active .mui-tab-indicator {
+  transform: scaleX(1);
+}
+
+.mui-tab-btn:hover {
+  color: #1976d2;
+  background-color: rgba(25, 118, 210, 0.04);
+}
+@media (max-width: 768px) {
+  .mui-tabs-nav {
+    gap: 10px;
+  }
+
+  .mui-tab-btn {
+    min-width: auto;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .mui-tabs-content {
+    padding: 10px;
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .btn-warning,
+  .btn-success,
+  .btn-danger {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .addproduct-thumbnail-img {
+    width: 80px;
+    height: 80px;
+  }
+}
+@media (max-width: 877px) {
+  .save {
+    margin-left: 60%;
+  }
+}
+@media (max-width: 534px) {
+  .save {
+    margin-left: 50%;
+  }
+}
+@media (max-width: 654px) {
+  .mui-tab-btn span {
+    font-size: small;
+  }
+}
+@media (max-width: 468px) {
+  .mui-tabs-container {
+    margin-left: 20px;
+  }
+}
+@media (max-width: 422px) {
+  .mui-tabs-container {
+    margin-left: 30px;
+  }
+}
+.signup1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 800px;
+  max-width: 800px;
+}
+
+td.but button {
+  margin-top: 5px; /* Adds space between buttons */
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Spacing between items */
+}
+
+.form-group1 {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 999px) {
+  .mui-tabs-container {
+      margin-left: 80px; /* Single column on smaller screens */
+  }
+}
+
+
+/* Product Table */
+
+.product-table {
+  width: 80%;
+  border-collapse: collapse;
+  overflow: hidden;
+  background: white;
+}
+
+.product-table th,
+.product-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.product-table th {
+  background: #019fbe;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.product-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.product-table tbody tr:hover {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.product-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.product-table tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+// .product-table td img {
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 8px;
+//   object-fit: cover;
+//   border: 2px solid #ddd;
+//   transition: transform 0.3s ease;
+// }
+
+.product-table td img:hover {
+  transform: scale(1.1);
+  border-color: #007bff;
+}
+
+/* Action Buttons */
+.btn-warning,
+.btn-success,
+.btn-danger {
+  padding: 8px 16px;
+  font-size: 12px;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 4px;
+}
+
+.btn-warning {
+  background: #019fbe;
+}
+
+.btn-warning:hover {
+  background: #019fbe !important;
+  transform: scale(1.05) ;
+}
+
+.btn-success {
+  background: #28a745;
+}
+
+.btn-success:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background: #555;
+}
+
+.btn-danger:hover {
+  background:#808080 !important;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-table th,
+  .product-table td {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  .btn-warning,
+  .btn-success,
+  .btn-danger {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-table th,
+  .product-table td {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .product-table td img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-warning,
+  .btn-success,
+  .btn-danger {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+}
+// .colorlib-narrow-content {
+//     display: flex;
+//     justify-content: center; /* Centers horizontally */
+//     align-items: center; /* Centers vertically */
+//     min-height: 100vh; /* Full viewport height to center vertically */
+//     padding: 20px;
+//     box-sizing: border-box;
+// }
