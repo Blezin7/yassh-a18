@@ -85,7 +85,7 @@ export class ProductdetailsComponent implements OnInit, AfterViewChecked{
   ngAfterViewChecked(): void {
     AOS.refresh();
   }
- 
+  
   onProductClick(id: number): void {
     this.selectedProduct = this.allProducts.find(product => product.id === id);
     if (this.selectedProduct && this.selectedProduct.explanation) {

@@ -48,7 +48,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ToastrModule.forRoot({closeButton: true}),
+    ToastrModule.forRoot({closeButton: true, positionClass: 'toast-top-center',}),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,

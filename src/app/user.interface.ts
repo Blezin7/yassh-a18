@@ -11,6 +11,9 @@ export interface Roles{
 }
 export interface User{
     uid: string
+    username: string
+    contact: string
+    userCategory: string
     email: string
     roles: Roles
 }

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { DOCUMENT } from '@angular/common';
 import { FirestoredbService, DBC } from '../shared/firestoredb.service';
 
 @Component({
@@ -23,7 +22,15 @@ export class SignupComponent implements OnInit {
   Details: string = '';
   Composition: string = '';
   Indication: string = '';
-  productObj: DBC = { id: '', productCategories: [], name: '', image: '', details: '', composition: '', indication: '' };
+  productObj: DBC = { 
+    id: '', 
+    productCategories: [], 
+    name: '', 
+    image: '', 
+    details: '', 
+    composition: '', 
+    indication: '' 
+  };
   productCategories: string[] = [
     'Bone Health',
     "Women's Health",
@@ -34,7 +41,7 @@ export class SignupComponent implements OnInit {
     'Immunomodulator',
     'Sleepcare',
   ];
-
+  selectedCategory: string = this.productCategories[0];
   userCategories: string[] = [
     'Ortho',
     'Gynae',
@@ -45,9 +52,9 @@ export class SignupComponent implements OnInit {
     'Immunology',
     'Sleep',
   ];
+  selectedUserCategory: string = this.userCategories[0];
 
   activeTab: string = 'user';
-
   image: File | null = null;
   imagePreview: string | null = null;
 
@@ -60,7 +67,6 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
   }
-  
 
   editProduct(product: any): void {
     product.editing = true;
@@ -82,7 +88,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.auth
-      .signup(this.email, this.username, this.contactno, this.password)
+      .signup(this.email, this.username, this.selectedUserCategory, this.contactno, this.password)
       .then(() => {
         this.toastr.success('Signup successful!');
         this.clearFields();
@@ -104,18 +110,19 @@ export class SignupComponent implements OnInit {
   onImageSelected(event: any): void {
     const file = event.target.files[0];
     const maxSizeInBytes = 1 * 1024 * 1024;
-  
+
     if (file) {
       if (file.size > maxSizeInBytes) {
         this.toastr.error('File size exceeds 1 MB. Please upload a smaller image.');
+        return;
       }
-  
+
       this.image = file;
-  
+
       this.readFileAsDataURL(file)
         .then((result: string) => {
           this.imagePreview = result;
-          this.Image = result
+          this.Image = result;
           if (this.selectedProduct) {
             this.selectedProduct.image = result;
           }
@@ -159,14 +166,14 @@ export class SignupComponent implements OnInit {
     this.Details = '';
     this.Composition = '';
     this.Indication = '';
-    this.productCategories = [];
+    this.selectedCategory = this.productCategories[0];
   }
 
   addProduct(): void {
-    if (this.Name && this.productCategories && this.Image && this.Details && this.Composition && this.Indication) {
+    if (this.Name && this.selectedCategory && this.Image && this.Details && this.Composition && this.Indication) {
       this.productObj.id = this.id;
       this.productObj.name = this.Name;
-      this.productObj.productCategories = this.productCategories;
+      this.productObj.productCategories = [this.selectedCategory];
       this.productObj.image = this.Image;
       this.productObj.details = this.Details;
       this.productObj.composition = this.Composition;
@@ -188,7 +195,7 @@ export class SignupComponent implements OnInit {
   }
 
   deleteProduct(product: DBC): void {
-    if (window.confirm('Are you sure you want to delete this product?' + product.name)) {
+    if (window.confirm('Are you sure you want to delete this product? ' + product.name)) {
       this.fsds
         .deleteProduct(product)
         .then(() => {

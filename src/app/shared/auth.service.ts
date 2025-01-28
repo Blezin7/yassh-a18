@@ -1,14 +1,14 @@
-import { ChangeDetectorRef, Inject, Injectable, Signal, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { User, UserInterface, Roles } from '../user.interface';
-import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   public currentUserSignal = signal<UserInterface | null>(null);
   private redirectUrl: string | null = null;
@@ -18,7 +18,6 @@ export class AuthService {
     private fireauth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router,
-    @Inject(DOCUMENT) private document: Document
   ) {
     this.fireauth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -28,7 +27,7 @@ export class AuthService {
           const userData = userSnapshot.data() as User;
           const user: UserInterface = {
             uid: firebaseUser.uid,
-            username: firebaseUser.displayName || 'Unknown',
+            username: userData.username || 'Unknown',
             email: firebaseUser.email || '',
             roles: userData.roles || {}
           };
@@ -73,14 +72,14 @@ export class AuthService {
           const userData = userSnapshot.data() as User;
           const user: UserInterface = {
             uid: response.user.uid,
-            username: response.user.displayName || 'Unknown',
+            username: userData.username || 'Unknown',
             email: response.user.email || email,
             roles: userData.roles || {},
           };
   
           this.currentUserSignal.set(user);
           sessionStorage.setItem('currentUser', JSON.stringify(user));
-          this.toastr.success('Welcome');
+          this.toastr.success(`Welcome back, ${user.username}!`);
           const redirectUrl = this.getRedirect() || '/';
           this.router.navigate([redirectUrl]);
         } else {
@@ -94,13 +93,16 @@ export class AuthService {
     }
   }
 
-  async signup(email: string, username: string, contactno: string, password: string): Promise<void> {
+  async signup(email: string, username: string, userCategory: string, contactno: string, password: string): Promise<void> {
     try {
       const userCredential = await this.fireauth.createUserWithEmailAndPassword(email, password);
       if (userCredential.user) {
         await this.updateUserData({
           uid: userCredential.user.uid,
           email: email,
+          username: username,
+          userCategory: userCategory,
+          contact: contactno,
           roles: { subscriber: true },
         });
         this.showSuccessMessage(username, contactno);
@@ -115,8 +117,12 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     const data: User = {
       uid: user.uid,
+      username: user.username,
+      contact: user.contact,
+      userCategory: user.userCategory,
       email: user.email,
       roles: user.roles || { subscriber: true },
+
     };
     await userRef.set(data, { merge: true });
   }

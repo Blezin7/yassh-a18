@@ -1,6 +1,5 @@
-import { Component, Inject, ChangeDetectorRef, effect, OnInit, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectorRef, effect, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
 import { AuthService } from './shared/auth.service';
 import { filter } from 'rxjs/operators';
 
@@ -40,7 +39,7 @@ export class AppComponent implements OnInit {
     this.runAnimations();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
-  
+
   adminOnly(): boolean {
     return this.currentUser?.roles?.admin === true;
   }
@@ -51,7 +50,7 @@ export class AppComponent implements OnInit {
 
   private runAnimations(): void {
     const currentRoute = this.router.url;
-    if (currentRoute === '/' || currentRoute.includes('home')) {
+    if (currentRoute === '/' || currentRoute.includes('/home')) {
       this.fullHeight();
       this.sliderMain();
     }
@@ -91,7 +90,6 @@ export class AppComponent implements OnInit {
         if (entry.isIntersecting) {
           const el = entry.target as HTMLElement;
           const effect = el.getAttribute('data-animate-effect');
-
           if (effect === 'fadeIn') {
             el.classList.add('fadeIn', 'animated');
           } else if (effect === 'fadeInLeft') {

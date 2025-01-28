@@ -22,6 +22,15 @@
         <a
           href="javascript:void(0)"
           class="mui-tab-btn"
+          [class.active]="activeTab === 'promotions'"
+          (click)="setActiveTab('promotions')"
+        >
+          <span>Add Promotions</span>
+          <div class="mui-tab-indicator"></div>
+        </a>
+        <a
+          href="javascript:void(0)"
+          class="mui-tab-btn"
           [class.active]="activeTab === 'view'"
           (click)="setActiveTab('view')"
         >
@@ -44,6 +53,23 @@
                 placeholder="Name *"
                 [(ngModel)]="username"
               />
+            </div>
+            <div class="form-group">
+              <select
+                *ngIf="userCategories.length > 0"
+                [(ngModel)]="selectedUserCategory"
+                name="selectedUserCategory"
+                class="form-control"
+                id="user-category"
+                required
+              >
+                <option
+                  *ngFor="let choseCategory of userCategories"
+                  [value]="choseCategory"
+                >
+                  {{ choseCategory }}
+                </option>
+              </select>
             </div>
             <div class="form-group">
               <input
@@ -116,7 +142,119 @@
                   <div class="form-group1">
                     <label for="product-category">Category</label>
                     <select
-                      [(ngModel)]="productCategories"
+                      *ngIf="productCategories.length > 0"
+                      [(ngModel)]="selectedCategory"
+                      name="category"
+                      class="form-control"
+                      id="product-category"
+                      required
+                    >
+                      <option
+                        *ngFor="let category of productCategories"
+                        [value]="category"
+                      >
+                        {{ category }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group1">
+                    <label for="product-indication">Indication/Support</label>
+                    <textarea
+                      [(ngModel)]="Indication"
+                      name="indication"
+                      class="form-control"
+                      placeholder="Indication/Support"
+                      id="product-indication"
+                      required
+                      rows="2"
+                    ></textarea>
+                  </div>
+                </div>
+                <!-- Right Column -->
+                <div class="form-column">
+                  <div class="form-group1">
+                    <label for="product-image">Product Image</label>
+                    <label for="file-input">
+                      <img
+                        [src]="image ? imagePreview : 'assets/images/upload_area.svg'"
+                        class="addproduct-thumbnail-img"
+                        alt="Upload Image"
+                      />
+                    </label>
+                    <input
+                      type="file"
+                      id="file-input"
+                      (change)="onImageSelected($event)"
+                      style="display: none"
+                      accept="image/*"
+                    />
+                  </div>
+                  <div class="form-group1">
+                    <label for="product-composition">Composition</label>
+                    <textarea
+                      [(ngModel)]="Composition"
+                      name="composition"
+                      class="form-control"
+                      placeholder="Composition"
+                      id="product-composition"
+                      required
+                      rows="4"
+                    ></textarea>
+                  </div>
+                  <div class="form-group1">
+                    <label for="product-details">Product Details</label>
+                    <textarea
+                      [(ngModel)]="Details"
+                      name="details"
+                      class="form-control"
+                      placeholder="Product Details"
+                      id="product-details"
+                      required
+                      rows="4"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+           
+            </form>
+          </div>
+        </div>
+
+        <!-- promotions -->
+      <div class="tab-pane" [class.active]="activeTab === 'promotions'">
+          <div class="colorlib-narrow-content signup" *ngIf="activeTab === 'promotions'">
+            <h2 class="colorlib-heading">Add Product</h2>
+            <form class="add-product-form">
+              <div class="form-group1 save-btn-container">
+                  <button
+                    type="button"
+                    class="btn btn-primary save"
+                    (click)="addProduct()"
+                  >
+                    Save
+                  </button>
+                </div>
+              <div class="form-grid">
+                  
+                <!-- Left Column -->
+                <div class="form-column">
+                  <div class="form-group1">
+                    <label for="product-name">Promotion Name</label>
+                    <input
+                      type="text"
+                      [(ngModel)]="Name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Product Name"
+                      id="product-name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group1">
+                    <label for="product-category">Category</label>
+                    <select
+                      *ngIf="productCategories.length > 0"
+                      [(ngModel)]="selectedCategory"
                       name="category"
                       class="form-control"
                       id="product-category"
@@ -210,7 +348,6 @@
                 <th>Composition</th>
                 <th>Details</th>
                 <th>Actions</th>
-                
               </tr>
             </thead>
             <tbody>
