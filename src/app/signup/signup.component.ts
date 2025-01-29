@@ -194,6 +194,10 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  addPromotions(): void {
+    this.toastr.info('This feature is coming soon!');
+  }
+
   deleteProduct(product: DBC): void {
     if (window.confirm('Are you sure you want to delete this product? ' + product.name)) {
       this.fsds

@@ -110,12 +110,12 @@
                 <textarea [(ngModel)]="Composition" name="composition" class="form-control" placeholder="Composition"
                   id="product-composition" required rows="4"></textarea>
               </div>
-              <div class="form-group1">
-                <label for="product-details">Product Details</label>
-                <textarea [(ngModel)]="Details" name="details" class="form-control" placeholder="Product Details"
-                  id="product-details" required rows="4"></textarea>
-              </div>
             </div>
+          </div>
+          <div class="form-group1">
+            <label for="product-details">Product Details</label>
+            <textarea [(ngModel)]="Details" name="details" class="form-control" placeholder="Product Details"
+              id="product-details" required rows="4"></textarea>
           </div>
         </form>
       </div>
@@ -127,7 +127,7 @@
         <h2 class="colorlib-heading">Add Product</h2>
         <form class="add-product-form">
           <div class="form-group1 save-btn-container">
-            <button type="button" class="btn btn-primary save" (click)="addProduct()">
+            <button type="button" class="btn btn-primary save" (click)="addPromotions()">
               Save
             </button>
           </div>
@@ -172,12 +172,12 @@
                 <textarea [(ngModel)]="Composition" name="composition" class="form-control" placeholder="Composition"
                   id="product-composition" required rows="4"></textarea>
               </div>
-              <div class="form-group1">
-                <label for="product-details">Product Details</label>
-                <textarea [(ngModel)]="Details" name="details" class="form-control" placeholder="Product Details"
-                  id="product-details" required rows="4"></textarea>
-              </div>
             </div>
+          </div>
+          <div class="form-column">
+            <label for="product-details">Product Details</label>
+            <textarea [(ngModel)]="Details" name="details" class="form-control" placeholder="Product Details"
+              id="product-details" required rows="4"></textarea>
           </div>
         </form>
       </div>
