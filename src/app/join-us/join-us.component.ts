@@ -13,14 +13,14 @@ export class JoinUsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    debugger
-    AOS.init({
-      offset: 100,
-      delay: 100,
-      duration: 1000,
-      easing: 'ease',
-      once: false,
-      mirror: false
-    });
+     AOS.init({
+          offset: 0,
+          delay: 100,
+          duration: 1000,
+          easing: 'ease',
+          once: false, 
+          mirror: false 
+        });
+      
   }
 }

@@ -29,7 +29,6 @@ export class ProductdetailsComponent implements OnInit, AfterViewChecked{
     'Sleepcare',
   ];
 
-
   constructor( public prod:ProductdetailsService, private route:ActivatedRoute, private router:Router, private fsds: FirestoredbService ) { }
 
   ngOnInit(): void {
@@ -74,13 +73,12 @@ export class ProductdetailsComponent implements OnInit, AfterViewChecked{
           console.log(err);
         }
       );
-    }
+  }
 
   goToDetails(productId: string): void {
     const id = this.selectedProduct?.id;
     this.router.navigate([`products/cataloguedetails/${productId}`]);
-}
-
+  }
   
   ngAfterViewChecked(): void {
     AOS.refresh();

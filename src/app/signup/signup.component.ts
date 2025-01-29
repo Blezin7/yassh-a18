@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
   Details: string = '';
   Composition: string = '';
   Indication: string = '';
-  productObj: DBC = { 
+  productObj: DBC = {
     id: '', 
     productCategories: [], 
     name: '', 

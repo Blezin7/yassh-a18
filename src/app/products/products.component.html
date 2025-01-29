@@ -1,17 +1,17 @@
 <div class="products-container">
-    <div class="products-header">
-      <h1 class="colorlib-heading">Our Products</h1>
-      <div class="tabs">
-        <a
-          *ngFor="let product of productDetails | keyvalue"
-          [routerLink]="'proditem/' + product.key"
-          routerLinkActive="active"
-          class="tab"
-          (click)="setActiveTab(product.key)"
-        >
-          {{ formatProductName(product.value) }}
-        </a>
-      </div>
+  <div class="products-header">
+    <h1 class="colorlib-heading head">Our Products</h1>
+    <div class="tabs">
+      <a
+        *ngFor="let product of productDetails | keyvalue"
+        [routerLink]="'proditem/' + product.key"
+        routerLinkActive="active"
+        class="tab"
+        (click)="setActiveTab(product.key)"
+      >
+        {{ formatProductName(product.value) }}
+      </a>
     </div>
   </div>
-  <router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>

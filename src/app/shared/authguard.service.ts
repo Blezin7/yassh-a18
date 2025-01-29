@@ -30,7 +30,6 @@ export class AuthguardService {
           take(1),
           map((userData: User | undefined) => {
             if (userData && userData.roles && userData.roles[requiredRole]) {
-              console.log('Access granted for role:', requiredRole);
               return true;
             } else {
               console.warn('Access denied. Missing role:', requiredRole);

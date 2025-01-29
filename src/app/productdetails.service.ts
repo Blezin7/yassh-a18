@@ -9,7 +9,7 @@ export class ProductdetailsService {
   productitems: Product[] =[
     {
       id:1,
-      name:'BONE HEALTH',
+      name:'Bone Health',
       img:'assets/images/bonehealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -23,7 +23,7 @@ export class ProductdetailsService {
     },
     {
       id:2,
-      name:"WOMEN'S HEALTH",
+      name:"Women's Health",
       img:'assets/images/womenhealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -37,7 +37,7 @@ export class ProductdetailsService {
     },
     {
       id:3,
-      name:"MEN'S HEALTH",
+      name:"Men's Health",
       img:'assets/images/menhealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -51,7 +51,7 @@ export class ProductdetailsService {
     },
     {
       id:4,
-      name:'NERVE HEALTH',
+      name:'Nerve Health',
       img:'assets/images/nervehealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -65,7 +65,7 @@ export class ProductdetailsService {
     },
     {
       id:5,
-      name:'GI HEALTH',
+      name:'GI Health',
       img:'assets/images/gihealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -79,7 +79,7 @@ export class ProductdetailsService {
     },
     {
       id:6,
-      name:'RENAL HEALTH',
+      name:'Renal Health',
       img:'assets/images/renalhealth.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -93,7 +93,7 @@ export class ProductdetailsService {
     },
     {
       id:7,
-      name:'IMMUNOMODULAR',
+      name:'Immunomodulator',
       img:'assets/images/immunomodulators.png',
       relimg1:'assets/images/bioten2.jpg',
       protxt1:'Bioten',
@@ -107,7 +107,7 @@ export class ProductdetailsService {
     },
     {
       id:8,
-      name:'SLEEPCARE',
+      name:'Sleepcare',
       img:'assets/images/sleepcare.png',
       relimg1:'assets/images/bioten2.jpg', 
       protxt1:'Bioten',
@@ -118,8 +118,7 @@ export class ProductdetailsService {
       heading:'Sleep care involves practices and habits that promote restful, restorative sleep.',
       details:"Sleep care includes maintaining a consistent sleep schedule, creating a comfortable sleep environment, and managing stress for restful sleep.",
       explanation:" Sleepcare focuses on improving sleep quality and duration, which are essential for physical health, cognitive function, and emotional well-being. Adequate sleep helps with memory consolidation, immune function, and the body's ability to repair and rejuvenate. Poor sleep can lead to various health issues, including fatigue, weakened immunity, and increased stress levels. Effective sleepcare involves establishing a consistent sleep routine, creating a peaceful and dark sleep environment, and managing sleep-disrupting habits. Limiting screen time before bed, avoiding caffeine, and engaging in relaxation techniques like meditation can help signal the body to wind down and prepare for restful sleep."
-    },
-
+    }
   ]
 
   constructor() { }
