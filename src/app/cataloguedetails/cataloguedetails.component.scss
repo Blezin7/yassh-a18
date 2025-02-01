@@ -7,11 +7,13 @@
     margin: 3%;
 }
 .productdisplay-main-img{
-    width: auto;
+    width: 60vh;
     height: 70vh;
+    object-fit: contain;
+    margin-left:100px;
 }
 .productdisplay-right{
-    margin: 0px 70px;
+    margin: 40px 70px;
     display: flex;
     flex-direction: column;
 }
@@ -71,6 +73,19 @@
 .productdisplay-right-category span{
     font-weight: 600;
 }
+.subcon{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .prodcon{
+    margin-left: 4%;
+  }
+  @media (max-width: 1210px) {
+    .product-cat .card-main {
+      width: 33.3333% !important; 
+      max-width: 33.3333% !important;
+    }
+  }
 @media(max-width:1280px){
     .productdisplay{
         margin: 0px 60px;
@@ -85,11 +100,12 @@
         height: 120px;
     }
     .productdisplay-main-img{
-        width: auto;
-        height: 510px;
+        width: 400px;
+        height: 500px;
+        object-fit: contain;
     }
     .productdisplay-right{
-        margin: 0px 30px;
+        margin: 20px 30px;
     }
     .productdisplay-right h1{
         font-size: 22px;
@@ -103,7 +119,7 @@
         font-size: 18px;
     }
     .productdisplay-right-description{
-        font-size: 13px;
+        font-size: 14px;
     }
     .productdisplay-right-size h1{
         margin-top: 20px;
@@ -133,7 +149,9 @@
         height: 80px;
     }
     .productdisplay-main-img{
-        height: 350px;
+        width: 350px;
+        height: 420px;
+        object-fit: contain;
     }
     .productdisplay-right h1{
         font-size: 18px;
@@ -166,8 +184,9 @@
         margin: 0px 10px;
     }
     .productdisplay-left{
+        margin-top: 100px;
         gap: 0px;
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: center;
     }
     .productdisplay-img-list{
@@ -178,7 +197,11 @@
         height: 70px;
     }
     .productdisplay-main-img{
+
         height: 300px;
+        width: 400px;
+        object-fit: contain;
+        margin-left: 10px;
     }
     .productdisplay-right h1{
         font-size: 14px;
@@ -222,13 +245,17 @@
         gap: 8px;
     }
     .productdisplay-img-list img{
-        height: 75px;
+        height: 75px;   
     }
     .productdisplay-main-img{
-        height: 330px;
+        margin-top: 50px;
+        height: 260px;
+        width: 225px;
+        object-fit: contain;
+        margin-left: 10px;
     }
     .productdisplay-right{
-        margin: 5px;
+        margin: 30px;
     }
     .productdisplay-right h1{
         margin-top: 15px;
@@ -277,13 +304,16 @@
     gap: 20px;
     justify-content: center;
   }
-  
   .card-container {
+    margin-bottom: 50px;
+    width: 250px;
+    height: 300px;
     perspective: 1000px;
-    width: 300px;
-    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
-  
   .card-inner {
     position: relative;
     width: 100%;
@@ -291,13 +321,7 @@
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
   }
-  
-  .card-container:hover .card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .card-front,
-  .card-back {
+  .card-front {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -307,38 +331,26 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-  }
-  
-  .card-front {
+    border: 1px solid #ccc;
     background: #ffffff;
     z-index: 2;
   }
-  
-  .card-back {
-    background: #f3f3f3;
-    transform: rotateY(180deg);
-    background: #019fbe;
+  .card-front:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
   }
+  .card-front img{
   
-  .card-front img,
-  .card-back img {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    width: 200px;
+    height: 225px;
+    object-fit: contain;
   }
-  
-  .card-front h2,
-  .card-back h2 {
+  .card-front h2 {
     margin: 0;
     padding: 10px;
     text-align: center;
-    font-size: 18px;
-    color: #333;
-    background-color: #f9f9f9;
-    border-radius: 0 0 10px 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: black;
   }
   .back {
     text-align: justify;

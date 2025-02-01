@@ -24,18 +24,18 @@
   </div>
 
 </div>
-<div class="name" data-aos="fade-right">
+<div class="name">
   <h1 class="colorlib-heading">Similar Product</h1>
 </div>
 <div class="subcon">
   <div class="row">
     <div class="product-cat prodcon">
-      <a class="col-md-3 card-main" (click)=" goToDetails(product.id)" *ngFor="let product of dbProducts;">
+      <a class="col-md-3 card-main" *ngFor="let product of filteredProducts">
         <div class="card-container">
           <div class="card-inner">
             <div class="card-front">
               <img [src]="product.image" alt="{{ product.name }}" />
-              <h2>{{ product.name }}</h2>
+              <h2>{{product.name}}</h2>
             </div>
           </div>
         </div>  

@@ -185,8 +185,8 @@
 
     <!-- View Products Tab -->
     <div class="tab-pane" [class.active]="activeTab === 'view'">
-      <div class="colorlib-narrow-content " *ngIf="activeTab === 'view'">
-        <h2 class="colorlib-heading ">Product List</h2>
+      <div class="colorlib-narrow-content signup" *ngIf="activeTab === 'view'">
+        <h2 class="colorlib-heading">Product List</h2>
         <div class="signup1">
           <table class="product-table">
             <thead>
@@ -233,10 +233,10 @@
                   {{ product.productCategories }}
                 </td>
                 <td *ngIf="product.editing">
-                  <select *ngIf="userCategories.length > 0" [(ngModel)]="selectedUserCategory"
-                    name="selectedUserCategory" class="form-control" id="user-category" required>
-                    <option *ngFor="let choseCategory of userCategories" [value]="choseCategory">
-                      {{ choseCategory }}
+                  <select *ngIf="productCategories.length > 0" [(ngModel)]="selectedCategory" name="category"
+                    class="form-control" id="product-category" required>
+                    <option *ngFor="let category of productCategories" [value]="category">
+                      {{ category }}
                     </option>
                   </select>
                 </td>

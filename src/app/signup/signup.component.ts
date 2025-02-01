@@ -184,6 +184,9 @@ export class SignupComponent implements OnInit {
         .then(() => {
           this.toastr.success('Product added successfully');
           this.resetForm();
+          this.image = null;
+          this.imagePreview = 'assets/images/upload_area.svg';
+          this.Image = '';
         })
         .catch((error) => {
           console.log(error);
@@ -215,7 +218,12 @@ export class SignupComponent implements OnInit {
 
   updateProduct(product: DBC): void {
     product.editing = false;
-
+  
+    // Ensure productCategories is updated properly
+    if (this.selectedCategory) {
+      product.productCategories = [this.selectedCategory]; 
+    }
+  
     this.fsds
       .updateProduct(product)
       .then(() => {

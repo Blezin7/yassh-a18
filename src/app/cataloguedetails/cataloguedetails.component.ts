@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import AOS from 'aos';
 import { DBC, FirestoredbService } from '../shared/firestoredb.service';
 import { Product } from '../product.model';
-
 
 @Component({
   selector: 'app-cataloguedetails',
@@ -13,6 +11,7 @@ import { Product } from '../product.model';
 })
 export class CataloguedetailsComponent implements OnInit{
   dbProducts: DBC[] = [];
+  filteredProducts: DBC[] = [];
   product: DBC[] = [];
   selectedProduct: Product | undefined
   productObj: DBC = { id: '', productCategories: [], name: '', image: '', details: '', composition: '', indication: '' };
@@ -24,19 +23,11 @@ export class CataloguedetailsComponent implements OnInit{
   ) {}
 
   ngOnInit():void{
-    const productId = this.aroute.snapshot.paramMap.get('id');
+    const productId = this.aroute.snapshot.paramMap.get('id')
     if (productId) {
-      this.getProductById(productId);
+      this.getProductById(productId)
     }
-    this.getAll();
- AOS.init({
-      offset: 0,
-      delay: 100,
-      duration: 1000,
-      easing: 'ease',
-      once: false, 
-      mirror: false 
-    });
+    this.getAll()
 }
 
 getAll(): void {
@@ -59,7 +50,6 @@ goToDetails(productId: string): void {
   this.router.navigate([`products/cataloguedetails/${productId}`]);
 }
 
-
 getProductById(productId: string): void {
   this.fsds.getAll().subscribe(
     (res) => {
@@ -75,5 +65,15 @@ getProductById(productId: string): void {
       console.error('Error fetching product:', err);
     }
   );
+}
+
+filterProducts(): void {
+  if (this.selectedProduct) {
+    this.filteredProducts = this.dbProducts.filter((product) =>
+      product.productCategories.includes(this.selectedProduct!.name)
+    );
+  } else {
+    this.filteredProducts = [...this.dbProducts];
+  }
 }
 }

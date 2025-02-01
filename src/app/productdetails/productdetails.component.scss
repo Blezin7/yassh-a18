@@ -123,21 +123,17 @@
   justify-content: space-between;
   padding: 10px;
   border: 1px solid #ccc;
-  // border-radius: 5px;
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+  background: #ffffff;
+  z-index: 2;
 }
 .card-front:hover{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
 }
-.card-front {
-  background: #ffffff;
-  z-index: 2;
-}
 .card-front img{
-  width: 100%;
-  height: auto;
-  margin-top: 15px;
-  // object-fit: cover;
+
+  width: 200px;
+  height: 225px;
+  object-fit: contain;
 }
 .card-front h2 {
   margin: 0;
@@ -181,6 +177,9 @@
   }
 }
 @media (max-width: 768px) {
+  .product-cat{
+    margin-left: 0px;
+  }
   .name {
     padding-top: 60px;
   }
