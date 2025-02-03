@@ -130,7 +130,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
 }
 .card-front img{
-
   width: 200px;
   height: 225px;
   object-fit: contain;
@@ -177,9 +176,6 @@
   }
 }
 @media (max-width: 768px) {
-  .product-cat{
-    margin-left: 0px;
-  }
   .name {
     padding-top: 60px;
   }
@@ -240,4 +236,15 @@
   justify-content: center;
   align-items: center;
 }
+}
+@media (max-width: 741px) {
+  .prodcon{
+      margin-top: 100px;
+      margin-right: 200px;
+  }
+}
+@media (max-width: 439px) {
+  .prodcon{
+    margin-right: 200px;
+  }
 }

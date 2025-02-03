@@ -24,6 +24,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { CataloguedetailsComponent } from './cataloguedetails/cataloguedetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     ApproveComponent,
     ProductdetailsComponent,
     AccessDeniedComponent,
+    CataloguedetailsComponent,
   ],
   imports: [
     BrowserModule,

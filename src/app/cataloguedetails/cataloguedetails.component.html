@@ -1,23 +1,23 @@
 <div class="productdisplay">
   <div class="productdisplay-left">
     <div class="productdisplay-img">
-      <img class="productdisplay-main-img" [src]="product[0].image" alt="{{product[0].name}}" />
+      <img class="productdisplay-main-img" [src]="product?.image" alt="{{product?.name}}" />
     </div>
   </div>
   <div class="productdisplay-right">
-    <h1>{{ product[0].name }}</h1>
+    <h1>{{ product?.name }}</h1>
     <div class="productdisplay-right-description">
-      {{ product[0].details }}
+      {{ product?.details }}
     </div>
     <div class="productdisplay-right-size">
       <h1>Composition</h1>
       <div class="productdisplay-right-sizes">
-        <p>{{ product[0].composition }}</p>
+        <p>{{ product?.composition }}</p>
       </div>
 
       <h1>Indication / Supports</h1>
       <div class="productdisplay-right-sizes">
-        <p>{{ product[0].indication }}</p>
+        <p>{{ product?.indication }}</p>
       </div>
     </div>
 
@@ -25,21 +25,28 @@
 
 </div>
 <div class="name">
-  <h1 class="colorlib-heading">Similar Product</h1>
+  <h1 class="colorlib-heading">Similar Products</h1>
 </div>
+
 <div class="subcon">
   <div class="row">
     <div class="product-cat prodcon">
-      <a class="col-md-3 card-main" *ngFor="let product of filteredProducts">
-        <div class="card-container">
-          <div class="card-inner">
-            <div class="card-front">
-              <img [src]="product.image" alt="{{ product.name }}" />
-              <h2>{{product.name}}</h2>
+      <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
+        <a class="col-md-3 card-main" *ngFor="let prod of filteredProducts" (click)="goToDetails(prod.id)">
+          <div class="card-container">
+            <div class="card-inner">
+              <div class="card-front">
+                <img [src]="prod.image" alt="{{ prod.name }}" />
+                <h2>{{ prod.name }}</h2>
+              </div>
             </div>
           </div>
-        </div>  
-      </a>
+        </a>
+      </ng-container>
+
+      <ng-template #noProducts>
+        <p>No similar products found.</p>
+      </ng-template>
     </div>
   </div>
 </div>
