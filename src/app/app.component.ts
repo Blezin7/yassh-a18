@@ -34,14 +34,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      this.runAnimations();
+      this.runAnimations()
     });
-    this.runAnimations();
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.runAnimations()
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false
   }
 
   adminOnly(): boolean {
-    return this.currentUser?.roles?.admin === true;
+    return this.currentUser?.roles?.admin === true
   }
 
   logOut() {
@@ -75,11 +75,27 @@ export class AppComponent implements OnInit {
   }
 
   private initCounter(): void {
-    ($('.js-counter') as any).countTo({
-      formatter: (value: number, options: any) => {
-        return value.toFixed(options.decimals);
+    const counters = document.querySelectorAll('.js-counter');
+  
+    if (!counters.length) return;
+  
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            ($(entry.target) as any).countTo({
+              formatter: (value: number, options: any) => {
+                return value.toFixed(options.decimals);
+              },
+            });
+            observer.unobserve(entry.target);
+          }
+        });
       },
-    });
+      { threshold: 0.5 }
+    );
+  
+    counters.forEach(counter => observer.observe(counter));
   }
 
   private initIntersectionObserverAnimations(): void {
@@ -118,7 +134,7 @@ export class AppComponent implements OnInit {
       burgerMenu.addEventListener('click', event => {
         event.preventDefault();
         if (body.classList.contains('offcanvas')) {
-          burgerMenu.classList.remove('active');
+          burgerMenu.classList.remove('active');  
           body.classList.remove('offcanvas');
         } else {
           burgerMenu.classList.add('active');

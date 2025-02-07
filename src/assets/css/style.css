@@ -108,9 +108,21 @@ figure {
     font-size: 12px;
     text-transform: uppercase;
     margin-bottom: 3em;
-    width: 100px;
+    width: 125px;
    }
+   @media screen and (max-width: 1400px) {
+    #colorlib-aside #colorlib-logo {
+      width: 108px;
+      margin-bottom: 1em; } }
    @media screen and (max-width: 1200px) {
+    #colorlib-aside #colorlib-logo {
+      width: 90px;
+      margin-bottom: 1em; } }
+   @media screen and (max-width: 1008px) {
+    #colorlib-aside #colorlib-logo {
+      width: 80px;
+      margin-bottom: 1em; } }
+   @media screen and (max-width: 885px) {
     #colorlib-aside #colorlib-logo {
       width: 70px;
       margin-bottom: 1em; } }
@@ -553,7 +565,7 @@ padding-left: 0px;}
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background-color: #2C2C2C;
+  background-color: #019FBE;
   color: #fff;
   position: relative;
   -webkit-box-shadow: none !important;
@@ -1153,7 +1165,7 @@ padding-left: 0px;}
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
-  border-radius: 0; }
+  border-radius: 2px; }
   .form-control:active, .form-control:focus {
     outline: none;
     -webkit-box-shadow: none;
