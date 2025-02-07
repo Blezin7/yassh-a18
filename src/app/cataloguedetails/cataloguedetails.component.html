@@ -28,25 +28,26 @@
   <h1 class="colorlib-heading">Similar Products</h1>
 </div>
 
-<div class="subcon">
-  <div class="row">
-    <div class="product-cat prodcon">
-      <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
-        <a class="col-md-3 card-main" *ngFor="let prod of filteredProducts" (click)="goToDetails(prod.id)">
-          <div class="card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img [src]="prod.image" alt="{{ prod.name }}" />
-                <h2>{{ prod.name }}</h2>
-              </div>
+<div class="products">
+  <div class="product-list">
+    <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
+    <a class="card-main" *ngFor="let product of filteredProducts" (click)="goToDetails(product.id)">
+      <div class="card-container">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="image-container">
+              <img [src]="product.image" [alt]="product.name" />
+            </div>
+            <div class="product-info">
+              <h2>{{ product.name }}</h2>
             </div>
           </div>
-        </a>
-      </ng-container>
-
-      <ng-template #noProducts>
-        <p>No similar products found.</p>
-      </ng-template>
-    </div>
+        </div>
+      </div>
+    </a>
+  </ng-container>
+  <ng-template #noProducts>
+    <p>No similar products found.</p>
+  </ng-template>
   </div>
 </div>

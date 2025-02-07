@@ -76,9 +76,9 @@ export class CataloguedetailsComponent implements OnInit {
             p.id !== this.product!.id &&
             p.productCategories.includes(this.product!.productCategories[0])
         )
-        .slice(0, 4);
+        .slice(0, 5);
     } else {
-      this.filteredProducts = this.dbProducts.slice(0, 4);
+      this.filteredProducts = this.dbProducts.slice(0, 5);
     }
 
     console.log('Filtered Products:', this.filteredProducts);
