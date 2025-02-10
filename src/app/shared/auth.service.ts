@@ -76,7 +76,6 @@ export class AuthService {
             email: response.user.email || email,
             roles: userData.roles || {},
           };
-  
           this.currentUserSignal.set(user);
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.toastr.success(`Welcome back, ${user.username}!`);

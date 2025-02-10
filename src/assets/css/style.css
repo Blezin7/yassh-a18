@@ -249,7 +249,7 @@ figure {
   background: #fff url(../images/loader.gif) no-repeat center center;
   width: 100%;
   float: left;
-  margin-bottom: 10em;
+  margin-bottom: 2em;
   clear: both; }
   #colorlib-hero .flexslider {
     border: none;

@@ -16,7 +16,7 @@ export class ProductdetailsComponent implements OnInit {
   splitexp: string[] = [];
   dbProducts: DBC[] = [];
   filteredProducts: DBC[] = [];
-  
+  loader: boolean = true;
   productObj: DBC = { 
     id: '', 
     productCategories: [], 
@@ -51,7 +51,7 @@ export class ProductdetailsComponent implements OnInit {
     } else {
       localStorage.removeItem('pageReloaded');
     }
-
+    this.loader = true;
     this.getAll();
 
     this.route.paramMap.subscribe((params) => {
@@ -80,6 +80,7 @@ export class ProductdetailsComponent implements OnInit {
         });
 
         this.filterProducts();
+        this.loader = false;
       },
       (err) => {
         console.error('Error fetching products:', err);

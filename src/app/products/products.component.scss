@@ -3,7 +3,7 @@
   max-width: 1200px;
   margin: auto;
 .head{
-  margin-left: 4%;
+  margin-left: 2%;
 }
   .products-header {
     .heading {
@@ -13,7 +13,7 @@
     }
     .tabs {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       flex-wrap: wrap;
       gap: 5px;
 

@@ -17,21 +17,6 @@ h4 {
   font-size: 40px !important;
   text-align: center;
 }
-// .address1{
-// position:absolute;
-//  top: 0;
-//  right:0;
-//  z-index: 5;
-//  margin-left: 60%;
-//  font-size: 16px;
-//  color:white;
- //  border-bottom: 40px solid  #019ebe ;
-//  border-left:25px solid transparent ;
-//  text-align:left;
-//  padding-left: 20px;
-//  height: 0;
-//  width: 40%;
-// }
 .address1 {
   position: absolute;
   top: 0;
@@ -48,6 +33,14 @@ h4 {
 }
 .address1 a{
   color: white;
+}
+.colorlib-about{
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+.colorlib-services{
+  padding-bottom: 0px;
+  padding-top: 0px
 }
 @media (max-width:1092px){
   .address1{

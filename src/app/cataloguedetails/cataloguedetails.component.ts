@@ -80,7 +80,6 @@ export class CataloguedetailsComponent implements OnInit {
     } else {
       this.filteredProducts = this.dbProducts.slice(0, 5);
     }
-
     console.log('Filtered Products:', this.filteredProducts);
   }
 
