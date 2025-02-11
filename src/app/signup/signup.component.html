@@ -28,34 +28,34 @@
 
     <!-- User Tab -->
     <div class="tab-pane" [class.active]="activeTab === 'user'">
-      <div class="colorlib-narrow-content signup" *ngIf="activeTab === 'user'">
-        <h2 class="colorlib-heading">Add New User</h2>
+      <div class="colorlib-narrow-content usertotal" *ngIf="activeTab === 'user'">
+        <h2 class="colorlib-heading userhead">Add New User</h2>
         <form [formGroup]="contactForm" id="contactform" (ngSubmit)="signup()">
-          <div class="form-group">
+          <div class="usersignup">
             <input type="text" formControlName="name" class="form-control" placeholder="Name *" />
             <span *ngIf="name?.invalid && name?.touched" class="text-danger">Name is required *</span>
           </div>
-          <div class="form-group">
+          <div class="usersignup">
             <select *ngIf="userCategories.length > 0" formControlName="selectedUserCategory" class="form-control" id="user-category">
               <option *ngFor="let choseCategory of userCategories" [value]="choseCategory">
                 {{ choseCategory }}
               </option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="usersignup">
             <input type="text" formControlName="email" class="form-control" placeholder="Email *" />
             <span *ngIf="emailf?.invalid && emailf?.touched" class="text-danger">Please enter a valid email address *</span>
           </div>
-          <div class="form-group">
+          <div class="usersignup">
             <input type="text" formControlName="contactno" class="form-control" (input)="enforceSingaporePrefix()"/>
             <span *ngIf="contactnof?.invalid && contactnof?.touched" class="text-danger">Enter a valid 8-digit contact number *</span>
           </div>
         
-          <div class="form-group">
+          <div class="usersignup">
             <input type="password" formControlName="password" class="form-control" placeholder="Password *" />
             <span *ngIf="pass?.invalid && pass?.touched" class="text-danger">Password must be at least 6 characters *</span>
           </div>
-          <div class="form-group">
+          <div class="usersignup">
             <input type="submit" class="btn btn-primary btn-send-message submit" value="Submit" [disabled]="contactForm.invalid" />
           </div>
         </form>
@@ -190,6 +190,7 @@
     <div class="tab-pane" [class.active]="activeTab === 'view'">
       <div class="colorlib-narrow-content signup" *ngIf="activeTab === 'view'">
         <h2 class="colorlib-heading">Product List</h2>
+        <div>
         <div class="signup1">
           <table class="product-table">
             <thead>
@@ -290,6 +291,7 @@
             </tbody>
           </table>
         </div>
+      </div>
       </div>
     </div>
   </div>

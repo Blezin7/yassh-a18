@@ -7,7 +7,17 @@
   border-radius:10px;
   width: 50%;
 }
-
+.usersignup {
+  margin-bottom: 15px;
+  border-radius:10px;
+  width: 400px;
+}
+.userhead{
+  left: -20px;
+}
+.usertotal{
+  margin: 40px 0px;
+}
 .btn-block {
   width: 100%;
 }
@@ -28,7 +38,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px; /* Adjust width as needed */
+  max-width: 150px;
 }
 
 
@@ -79,7 +89,8 @@ button.btn-primary {
   height: 100px;
 }
 .save {
-  margin-left: 80%;
+  margin-left: 85%;
+  max-width: 120px;
 }
 .tab-btn {
   display: inline-block;
@@ -278,6 +289,7 @@ td.but button {
 }
 .submit{
   width:40%;
+  max-width: 120px;
 }
 /* Responsive Design */
 @media (max-width:1222px){
@@ -305,12 +317,12 @@ td.but button {
 }
 @media (max-width: 877px) {
   .save {
-    margin-left: 60%;
+    margin-left: 80%;
   }
 }
 @media (max-width: 534px) {
   .save {
-    margin-left: 50%;
+    margin-left: 60%;
   }
 }
 @media (max-width: 654px) {
@@ -331,6 +343,9 @@ td.but button {
 @media (max-width: 531px) {
   .colorlib-narrow-content.signup {
     width: 300px;
+  }
+  .usersignup{
+    width: 270px;
   }
 }
 @media(max-width:1001px){
