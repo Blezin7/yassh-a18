@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { CataloguedetailsComponent } from './cataloguedetails/cataloguedetails.component';
+import { PreviewComponent } from './preview/preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { CataloguedetailsComponent } from './cataloguedetails/cataloguedetails.c
     ProductdetailsComponent,
     AccessDeniedComponent,
     CataloguedetailsComponent,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,10 @@ import { DBC, FirestoredbService } from '../shared/firestoredb.service';
 @Component({
   selector: 'app-cataloguedetails',
   standalone: false,
-  templateUrl: './cataloguedetails.component.html',
-  styleUrl: './cataloguedetails.component.scss',
+  templateUrl: './preview.component.html',
+  styleUrl: './preview.component.scss',
 })
-export class CataloguedetailsComponent implements OnInit {
+export class PreviewComponent implements OnInit {
   dbProducts: DBC[] = [];
   filteredProducts: DBC[] = [];
   product: DBC | undefined;
@@ -26,7 +26,7 @@ export class CataloguedetailsComponent implements OnInit {
   splitdetails: string[] = [];
   splitcomposition: string[] = [];
   splitindications: string[] = [];
-
+  activeTab:string='view';
 
   constructor(
     private aroute: ActivatedRoute,
@@ -34,27 +34,16 @@ export class CataloguedetailsComponent implements OnInit {
     private router: Router
   ) {}
 
+  
+
   ngOnInit(): void {
     const productId = this.aroute.snapshot.paramMap.get('id');
     if (productId) {
       this.getProductById(productId);
     }
     this.getAll();
+    console.log(this.splitdetails);
   }
-
-  goBack(): void {
-    if (!this.product?.productCategories[0]) {
-      return;
-    }
-    let categoryKey = Object.keys(this.goback).find(
-      (key) => this.goback[key as unknown as keyof typeof this.goback] === this.product?.productCategories[0]
-    );
-  
-    if (categoryKey) {
-      this.router.navigate([`/products/proditem/${categoryKey}`]);
-    }
-  }
-
   getAll(): void {
     this.fsds.getAll().subscribe(
       (res) => {
@@ -86,7 +75,6 @@ export class CataloguedetailsComponent implements OnInit {
 
         this.product = products.find((p) => p.id === productId);
         console.log('Selected Product:', this.product);
-
         if (this.product?.details) {
           this.splitdetails = this.splitString(this.product.details,'. ');
         }
@@ -96,7 +84,6 @@ export class CataloguedetailsComponent implements OnInit {
         if (this.product?.indication)  {
           this.splitindications = this.splitString(this.product.indication,'. ');
         }
-
         if (this.dbProducts.length > 0) {
           this.filterProducts();
         }
@@ -115,22 +102,29 @@ export class CataloguedetailsComponent implements OnInit {
             p.id !== this.product!.id &&
             p.productCategories.includes(this.product!.productCategories[0])
         )
-        .slice(0, 5);
+        .slice(0, 4);
     } else {
-      this.filteredProducts = this.dbProducts.slice(0, 5);
+      this.filteredProducts = this.dbProducts.slice(0, 4);
     }
+
     console.log('Filtered Products:', this.filteredProducts);
   }
 
   goToDetails(productId: string): void {
     this.router.navigate([`products/cataloguedetails/${productId}`]);
   }
-
   splitString(text: string, delimiter: string): string[] {
     if (!text) {
       return [];
     }
     return text.split(delimiter).filter((sentence) => sentence.trim() !== '');
   }
-
+  setActiveTab(tab: string): void {
+    this.router.navigate(['/signup'], {
+      queryParams: { tab: tab },
+      queryParamsHandling: 'merge'
+    });
+  }
+  
+  
 }

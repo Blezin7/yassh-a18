@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { FirestoredbService, DBC } from '../shared/firestoredb.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,6 +12,7 @@ import { FirestoredbService, DBC } from '../shared/firestoredb.service';
   standalone: false,
 })
 export class SignupComponent implements OnInit {
+  contactForm: any;
   email: string = '';
   username: string = '';
   contactno: string = '';
@@ -71,20 +74,71 @@ export class SignupComponent implements OnInit {
     'Rheumatology',
     'Urology',
   ];
-  selectedUserCategory: string = this.userCategories[0];
+  selectedUserCategory: string = '';
 
   activeTab: string = 'user';
   image: File | null = null;
   imagePreview: string | null = null;
 
   constructor(
+    private fb: FormBuilder,
+    private router: Router,
     private auth: AuthService,
     @Inject(ToastrService) private toastr: ToastrService,
     private fsds: FirestoredbService
   ) {}
 
   ngOnInit(): void {
+    this.selectedUserCategory = this.userCategories[0];
     this.getAll();
+    this.router.routerState.root.queryParams.subscribe((params) => {
+      if (params['tab']) {
+        this.activeTab = params['tab'];
+      }
+    })
+    this.contactForm = this.fb.nonNullable.group({
+      name: ['', Validators.required],
+      selectedUserCategory: [this.selectedUserCategory, Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      contactno: ['+65 ', [Validators.required, Validators.pattern('^\\+65\\s[0-9]{8}$')]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  enforceSingaporePrefix() {
+    const contactControl = this.contactForm.get('contactno');
+    if (contactControl) {
+      let value = contactControl.value;
+      if (!value.startsWith('+65 ')) {
+        contactControl.setValue('+65 ', { emitEvent: false });
+      } else {
+        let digits = value.replace(/\D/g, '');
+        if (digits.length > 10) {
+          digits = digits.slice(0, 10);
+        }
+        contactControl.setValue('+65 ' + digits.slice(2), { emitEvent: false });
+      }
+    }
+  }
+
+  get emailf() {
+    return this.contactForm.get('email');
+  }
+
+  get selectedCategoryf() {
+    return this.contactForm.get('selectedUserCategory');
+  }
+
+  get name() {
+    return this.contactForm.get('name');
+  }
+
+  get contactnof() {
+    return this.contactForm.get('contactno');
+  }
+
+  get pass() {
+    return this.contactForm.get('password');
   }
 
   editProduct(product: any): void {
@@ -94,20 +148,27 @@ export class SignupComponent implements OnInit {
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;
+    this.router.navigate([], {
+      queryParams: { tab: this.activeTab },
+      queryParamsHandling: 'merge',
+    });
   }
 
-  signup(): void {
-    if (!this.email) {
-      this.toastr.warning('Please enter a valid Email');
-      return;
-    }
-    if (!this.password) {
-      this.toastr.warning('Please enter a valid Password');
-      return;
-    }
 
+  signup(): void {
+    if (this.contactForm.invalid) {
+      this.toastr.warning('Please fill in all required fields correctly.');
+      return;
+    }
+    
+    const email = this.contactForm.value.email;
+    const name = this.contactForm.value.name;
+    const selectedUserCategory = this.contactForm.value.selectedUserCategory;
+    const contactno = this.contactForm.value.contactno;
+    const password = this.contactForm.value.password;
+  
     this.auth
-      .signup(this.email, this.username, this.selectedUserCategory, this.contactno, this.password)
+      .signup(email, name, selectedUserCategory, contactno, password)
       .then(() => {
         this.toastr.success('Signup successful!');
         this.clearFields();
@@ -121,6 +182,7 @@ export class SignupComponent implements OnInit {
 
   private clearFields(): void {
     this.email = '';
+    this.selectedUserCategory = this.userCategories[0];
     this.username = '';
     this.contactno = '';
     this.password = '';
@@ -257,4 +319,9 @@ export class SignupComponent implements OnInit {
   cancelEdit(product: DBC): void {
     product.editing = !product.editing;
   }
+  preview(product: any): void {
+    this.selectedProduct = product;
+    this.router.navigate([`/preview/${product.id}`]);
+  }
+
 }

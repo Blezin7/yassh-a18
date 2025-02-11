@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, effect, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, effect, OnInit, AfterViewInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
 import { filter } from 'rxjs/operators';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'yassh';
   currentUser: any = null;
 
@@ -40,12 +40,18 @@ export class AppComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false
   }
 
+  ngAfterViewInit(): void {
+    this.burgerMenu();
+    this.mobileMenuOutsideClick();
+  }
+
   adminOnly(): boolean {
     return this.currentUser?.roles?.admin === true
   }
 
   logOut() {
-    this.auth.logout();
+    this.auth.logout()
+    this.closeMobileMenu()
   }
 
   private runAnimations(): void {
@@ -56,8 +62,6 @@ export class AppComponent implements OnInit {
     }
     this.initCounter();
     this.initIntersectionObserverAnimations();
-    this.burgerMenu();
-    this.mobileMenuOutsideClick();
     this.stickyFunction();
     this.owlCrouselFeatureSlide();
     this.isMobile();
@@ -129,41 +133,42 @@ export class AppComponent implements OnInit {
   private burgerMenu(): void {
     const burgerMenu = document.querySelector('.js-colorlib-nav-toggle') as HTMLElement;
     const body = document.body;
-
+  
     if (burgerMenu) {
       burgerMenu.addEventListener('click', event => {
         event.preventDefault();
-        if (body.classList.contains('offcanvas')) {
-          burgerMenu.classList.remove('active');  
-          body.classList.remove('offcanvas');
-        } else {
-          burgerMenu.classList.add('active');
-          body.classList.add('offcanvas');
-        }
+        body.classList.toggle('offcanvas');
+        burgerMenu.classList.toggle('active');
       });
     }
   }
-
+  
   private mobileMenuOutsideClick(): void {
     const aside = document.getElementById('colorlib-aside');
     const toggleButton = document.querySelector('.js-colorlib-nav-toggle') as HTMLElement;
 
     if (aside && toggleButton) {
-      document.addEventListener('click', e => {
-        if (!aside.contains(e.target as Node) && !toggleButton.contains(e.target as Node)) {
-          if (document.body.classList.contains('offcanvas')) {
-            document.body.classList.remove('offcanvas');
-            toggleButton.classList.remove('active');
-          }
-        }
-      });
+      document.addEventListener('click', (e) => {
+        const target = e.target as Node;
+        const isClickInsideMenu = aside.contains(target);
+        const isClickOnToggle = toggleButton.contains(target);
 
-      window.addEventListener('scroll', () => {
-        if (document.body.classList.contains('offcanvas')) {
-          document.body.classList.remove('offcanvas');
-          toggleButton.classList.remove('active');
+        if (!isClickInsideMenu && !isClickOnToggle && document.body.classList.contains('offcanvas')) {
+          this.closeMobileMenu();
         }
       });
+    }
+  }
+
+  public closeMobileMenu(): void {
+    const body = document.body;
+    const toggleButton = document.querySelector('.js-colorlib-nav-toggle') as HTMLElement;
+
+    if (body.classList.contains('offcanvas')) {
+      body.classList.remove('offcanvas');
+      if (toggleButton) {
+        toggleButton.classList.remove('active');
+      }
     }
   }
 

@@ -12,6 +12,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { JoinUsComponent } from './join-us/join-us.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { CataloguedetailsComponent } from './cataloguedetails/cataloguedetails.component';
+import { PreviewComponent } from './preview/preview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
    },
   { path: 'promotions', component: PromotionsComponent },
   { path: 'products/cataloguedetails/:id', component: CataloguedetailsComponent },
+  { path: 'preview/:id', component: PreviewComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'career', component: CareerComponent },
   { path: 'team-work', component: TeamWorkComponent },

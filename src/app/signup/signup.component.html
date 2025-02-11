@@ -22,6 +22,7 @@
         <div class="mui-tab-indicator"></div>
       </a>
     </div>
+
   </div>
   <div class="mui-tabs-content">
 
@@ -29,31 +30,33 @@
     <div class="tab-pane" [class.active]="activeTab === 'user'">
       <div class="colorlib-narrow-content signup" *ngIf="activeTab === 'user'">
         <h2 class="colorlib-heading">Add New User</h2>
-        <form id="contactform">
+        <form [formGroup]="contactForm" id="contactform" (ngSubmit)="signup()">
           <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="Name *" [(ngModel)]="username" />
+            <input type="text" formControlName="name" class="form-control" placeholder="Name *" />
+            <span *ngIf="name?.invalid && name?.touched" class="text-danger">Name is required *</span>
           </div>
           <div class="form-group">
-            <select *ngIf="userCategories.length > 0" [(ngModel)]="selectedUserCategory" name="selectedUserCategory"
-              class="form-control" id="user-category" required>
+            <select *ngIf="userCategories.length > 0" formControlName="selectedUserCategory" class="form-control" id="user-category">
               <option *ngFor="let choseCategory of userCategories" [value]="choseCategory">
                 {{ choseCategory }}
               </option>
             </select>
           </div>
           <div class="form-group">
-            <input type="text" name="email" class="form-control" placeholder="Email *" [(ngModel)]="email" />
+            <input type="text" formControlName="email" class="form-control" placeholder="Email *" />
+            <span *ngIf="emailf?.invalid && emailf?.touched" class="text-danger">Please enter a valid email address *</span>
           </div>
           <div class="form-group">
-            <input type="text" name="contactno" class="form-control" placeholder="Contact No *"
-              [(ngModel)]="contactno" />
+            <input type="text" formControlName="contactno" class="form-control" (input)="enforceSingaporePrefix()"/>
+            <span *ngIf="contactnof?.invalid && contactnof?.touched" class="text-danger">Enter a valid 8-digit contact number *</span>
+          </div>
+        
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control" placeholder="Password *" />
+            <span *ngIf="pass?.invalid && pass?.touched" class="text-danger">Password must be at least 6 characters *</span>
           </div>
           <div class="form-group">
-            <input type="password" name="password" class="form-control" placeholder="Password *"
-              [(ngModel)]="password" />
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-send-message submit" value="Submit" (click)="signup()" />
+            <input type="submit" class="btn btn-primary btn-send-message submit" value="Submit" [disabled]="contactForm.invalid" />
           </div>
         </form>
       </div>
@@ -246,7 +249,7 @@
                   {{ product.indication }}
                 </td>
                 <td *ngIf="product.editing">
-                  <input [(ngModel)]="product.indication" class="form-control" />
+                  <textarea [(ngModel)]="product.indication" class="form-control" ></textarea>
                 </td>
 
                 <!-- Composition -->
@@ -254,7 +257,7 @@
                   {{ product.composition }}
                 </td>
                 <td *ngIf="product.editing">
-                  <input [(ngModel)]="product.composition" class="form-control" />
+                  <textarea [(ngModel)]="product.composition" class="form-control" ></textarea>
                 </td>
 
                 <!-- Details -->
@@ -262,7 +265,7 @@
                   {{ product.details }}
                 </td>
                 <td *ngIf="product.editing">
-                  <input [(ngModel)]="product.details" class="form-control" />
+                  <textarea [(ngModel)]="product.details" class="form-control" ></textarea>
                 </td>
 
                 <!-- Actions -->
@@ -278,6 +281,9 @@
                   </button>
                   <button class="btn btn-danger" (click)="deleteProduct(product)" title="Delete">
                     <i class="bi bi-trash"></i>
+                  </button>
+                  <button class="btn btn-warning" (click)="preview(product)" *ngIf="!product.editing" title="preview">
+                    <i class="bi bi-eye"></i>
                   </button>
                 </td>
               </tr>

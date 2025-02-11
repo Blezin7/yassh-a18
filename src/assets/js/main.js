@@ -110,9 +110,6 @@
 				$('body').addClass('offcanvas');	
 			}
 		});
-
-
-
 	};
 
 	// Click outside of offcanvass

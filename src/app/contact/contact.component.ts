@@ -26,13 +26,25 @@ export class ContactComponent implements OnInit {
   constructor(private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.contactForm = this.fb.group({
+    this.contactForm = this.fb.nonNullable.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.email],
       subject: ['', Validators.required],
       message: ['', Validators.required],
       recaptcha: ['', Validators.required],
     });
+  }
+  get email(){
+    return this.contactForm.get('email')
+  }
+  get name(){
+    return this.contactForm.get('name')
+  }
+  get subject(){
+    return this.contactForm.get('subject')
+  }
+  get message(){
+    return this.contactForm.get('message')
   }
 
   handleReset(): void {

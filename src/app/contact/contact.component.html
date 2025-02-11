@@ -50,17 +50,19 @@
                         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="contactform">
                             <div class="form-group">
                                 <input type="text" formControlName="name" class="form-control" placeholder="Name *" />
+                                <span *ngIf="name?.invalid && name?.touched" class="text-danger">You can't leave the name empty *</span>
                             </div>
                             <div class="form-group">
                                 <input type="text" formControlName="email" class="form-control" placeholder="Email *" />
+                                <span *ngIf="email?.invalid && email?.touched" class="text-danger">Please enter a valid email address *</span>
                             </div>
                             <div class="form-group">
-                                <input type="text" formControlName="subject" class="form-control"
-                                    placeholder="Subject *" />
+                                <input type="text" formControlName="subject" class="form-control" placeholder="Subject *" />
+                                <span *ngIf="subject?.invalid && subject?.touched" class="text-danger">You can't leave the Subject empty *</span>
                             </div>
                             <div class="form-group">
-                                <textarea formControlName="message" cols="30" rows="7" class="form-control"
-                                    placeholder="Message *"></textarea>
+                                <textarea formControlName="message" cols="30" rows="7" class="form-control" placeholder="Message *"></textarea>
+                                <span *ngIf="message?.invalid && message?.touched" class="text-danger">You can't leave the Message empty *</span>
                             </div>
                             <div class="form-group">
                                 <ngx-recaptcha2 #captchaElem [siteKey]="'6LcwJa4qAAAAAJWOT3YMOfvJI5iLpWGLXGG_CTDD'"

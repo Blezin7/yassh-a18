@@ -155,7 +155,7 @@ export class AuthService {
   }
 
   private showSuccessMessage(username: string, contactno: string): void {
-    this.toastr.success(`Registration of ${username} with contact number ${contactno} completed successfully! You logged in as this user`);
+    this.toastr.success(`Registration of ${username} with contact number ${contactno} completed successfully! Please login again`);
     this.router.navigate(['/login']);
   }
 

@@ -1,0 +1,44 @@
+<div class="productdisplay">
+    <div class="productdisplay-left">
+      <div class="productdisplay-img">
+        <img
+          class="productdisplay-main-img"
+          [src]="product?.image"
+          alt="{{ product?.name }}"
+        />
+      </div>
+    </div>
+    <div class="productdisplay-right">
+      <button class="btn btn-primary btn-send-message fltbtn" (click)=" setActiveTab('view')">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+      <h1>{{ product?.name }}</h1>
+      <div class="productdisplay-right-description">
+        <ul>
+          <li type="disc" *ngFor="let detail of splitdetails">
+            {{ detail }}
+          </li>
+        </ul>
+      </div>
+  
+      <div class="productdisplay-right-size">
+        <h1>Composition</h1>
+        <div class="productdisplay-right-sizes">
+          <ul>
+            <li type="circle" *ngFor="let composition of splitcomposition">
+              {{ composition }}
+            </li>
+          </ul>
+        </div>
+  
+        <h1>Indication / Supports</h1>
+        <div class="productdisplay-right-sizes">
+          <ul>
+            <li type="1" *ngFor="let indication of splitindications">
+              {{ indication }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

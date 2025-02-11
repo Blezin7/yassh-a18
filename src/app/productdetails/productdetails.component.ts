@@ -69,7 +69,7 @@ export class ProductdetailsComponent implements OnInit {
     });
     
   }
-
+  
   getAll(): void {
     this.fsds.getAll().subscribe(
       (res) => {
