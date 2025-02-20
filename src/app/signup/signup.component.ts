@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
     'Sleepcare',
     'Skin & Hair Care',
     'Cardiovascular Health',
-    'General well being',
+    'General Well Being',
   ];
   selectedCategory: string = this.productCategories[0];
   userCategories: string[] = [

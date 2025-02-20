@@ -22,7 +22,7 @@ export class CataloguedetailsComponent implements OnInit {
     7:'Sleepcare',
     8:'Skin & Hair Care',
     9:'Cardiovascular Health',
-    10:'General well being',
+    10:'General Well Being',
     
   };
   splitdetails: string[] = [];
