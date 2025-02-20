@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
   Name: string = '';
   Details: string = '';
   Composition: string = '';
+  Dosage:string='';
   Indication: string = '';
   productObj: DBC = {
     id: '', 
@@ -32,6 +33,7 @@ export class SignupComponent implements OnInit {
     image: '', 
     details: '', 
     composition: '', 
+    dosage: '',
     indication: '' 
   };
   productCategories: string[] = [
@@ -39,10 +41,12 @@ export class SignupComponent implements OnInit {
     "Women's Health",
     "Men's Health",
     'Nerve Health',
-    'GI Health',
-    'Renal Health',
+    'Digestive & Liver Health',
     'Immunomodulator',
     'Sleepcare',
+    'Skin & Hair Care',
+    'Cardiovascular Health',
+    'General well being',
   ];
   selectedCategory: string = this.productCategories[0];
   userCategories: string[] = [
@@ -246,18 +250,20 @@ export class SignupComponent implements OnInit {
     this.Image = '';
     this.Details = '';
     this.Composition = '';
+    this.Dosage='';
     this.Indication = '';
     this.selectedCategory = this.productCategories[0];
   }
 
   addProduct(): void {
-    if (this.Name && this.selectedCategory && this.Image && this.Details && this.Composition && this.Indication) {
+    if (this.Name && this.selectedCategory && this.Image && this.Details && this.Composition &&this.Dosage && this.Indication) {
       this.productObj.id = this.id;
       this.productObj.name = this.Name;
       this.productObj.productCategories = [this.selectedCategory];
       this.productObj.image = this.Image;
       this.productObj.details = this.Details;
       this.productObj.composition = this.Composition;
+      this.productObj.dosage = this.Dosage;
       this.productObj.indication = this.Indication;
 
       this.fsds
@@ -300,7 +306,6 @@ export class SignupComponent implements OnInit {
   updateProduct(product: DBC): void {
     product.editing = false;
   
-    // Ensure productCategories is updated properly
     if (this.selectedCategory) {
       product.productCategories = [this.selectedCategory]; 
     }
@@ -316,12 +321,13 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  cancelEdit(product: DBC): void {
-    product.editing = !product.editing;
+  cancelEdit(product: any): void {
+    product.editing = false
   }
+
   preview(product: any): void {
     this.selectedProduct = product;
     this.router.navigate([`/preview/${product.id}`]);
-  }
+}
 
 }

@@ -24,18 +24,21 @@ export class ProductdetailsComponent implements OnInit {
     image: '', 
     details: '', 
     composition: '', 
-    indication: '' 
+    dosage: '',
+    indication: ''
   };
 
   productCategories: string[] = [
-    'Bone Health',
+   'Bone Health',
     "Women's Health",
     "Men's Health",
     'Nerve Health',
-    'GI Health',
-    'Renal Health',
+    'Digestive & Liver Health',
     'Immunomodulator',
     'Sleepcare',
+    'Skin & Hair Care',
+    'Cardiovascular Health',
+    'General Well Being',
   ];
 
   constructor(

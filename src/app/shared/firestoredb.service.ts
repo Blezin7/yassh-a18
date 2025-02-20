@@ -7,6 +7,7 @@ export interface DBC {
   image: string
   details: string
   composition: string
+  dosage: string
   indication: string
   editing?: boolean 
   productCategories: string[];

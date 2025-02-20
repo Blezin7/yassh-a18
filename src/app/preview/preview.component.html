@@ -4,41 +4,113 @@
         <img
           class="productdisplay-main-img"
           [src]="product?.image"
-          alt="{{ product?.name }}"
+          *ngIf="!product?.editing"
         />
+       
+        <div *ngIf="product?.editing">
+          <label for="file-input">
+            <img [src]="image ? imagePreview : 'assets/images/upload_area.svg'" class="productdisplay-main-img" alt="" />
+          </label>
+          <input type="file" id="file-input" (change)="onImageSelected($event)" style="display: none"
+            accept="image/*" />
+        </div>
+        <!-- <div>
+          <button *ngIf="!product?.editing" class="btn btn-warning" style="margin-left: 100px;" (click)="editProduct(product)"><i class="bi bi-pencil"></i></button>
+          <button *ngIf="product?.editing" class="btn btn-success" style="margin-left: 100px;" (click)="cancelEdit(product)"><i class="bi bi-x-circle"></i></button>
+          <button class="btn btn-primary" style="margin-left: 100px;" (click)="updateProductById()"><i class="bi bi-save"></i></button>
+        </div> -->
+        <div>
+          <div class="product-category-heading">
+          <h1>Product Category</h1>
+        </div>
+        <div class="product-category" *ngIf="!product?.editing">
+          <h4 (click)="editProduct(product)">{{product?.productCategories}}</h4>
+        </div>
+        <div class="product-category" *ngIf="product?.editing">
+          <select *ngIf="productCategories.length > 0" [(ngModel)]="selectedCategory" name="category"
+            class="form-control" id="product-category" required>
+            <option *ngFor="let category of productCategories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+        </div>
+        <div class="left">
+          <h1>Dosage and Usage</h1>
+          <div *ngIf="product?.editing">
+            <textarea *ngIf="product" [(ngModel)]="product.dosage" class="form-control" ></textarea>
+            </div>
+            <div  *ngIf="!product?.editing">
+          <ul>
+            <li type="circle" *ngFor="let dosage of splitdosage">
+              {{ dosage }}
+            </li>
+          </ul>
+        
+        </div>
+        </div>
+        <div>
+          <button *ngIf="!product?.editing" title="edit" class="btn btn-primary" style="margin-left: 100px;" (click)="editProduct(product)"><i class="bi bi-pencil"></i></button>
+          <button *ngIf="product?.editing" title="cancel" class="btn btn-warning" style="margin-left: 100px;" (click)="cancelEdit(product)"><i class="bi bi-x-circle"></i></button>
+          <button class="btn btn-success" title="save" style="margin-left: 100px;" (click)="updateProductById()"><i class="bi bi-save"></i></button>
+        </div>
       </div>
     </div>
     <div class="productdisplay-right">
       <button class="btn btn-primary btn-send-message fltbtn" (click)=" setActiveTab('view')">
         <i class="bi bi-arrow-left"></i>
       </button>
-      <h1>{{ product?.name }}</h1>
-      <div class="productdisplay-right-description">
+      <h1 *ngIf="!product?.editing">{{ product?.name }}</h1>
+      <div *ngIf="product?.editing">
+      <input *ngIf="product" [(ngModel)]="product.name" class="form-control" />
+      </div>
+      <div *ngIf="!product?.editing" class="productdisplay-right-description">
         <ul>
           <li type="disc" *ngFor="let detail of splitdetails">
             {{ detail }}
           </li>
         </ul>
       </div>
+      <div class="productdisplay-right-description" *ngIf="product?.editing">
+        <textarea *ngIf="product" [(ngModel)]="product.details" class="form-control" required rows="15"></textarea>
+      </div>
   
       <div class="productdisplay-right-size">
         <h1>Composition</h1>
-        <div class="productdisplay-right-sizes">
+        <div *ngIf="!product?.editing" class="productdisplay-right-sizes">
           <ul>
             <li type="circle" *ngFor="let composition of splitcomposition">
               {{ composition }}
             </li>
           </ul>
         </div>
+        <div class="productdisplay-right-description" *ngIf="product?.editing">
+          <textarea *ngIf="product" [(ngModel)]="product.composition" class="form-control" required rows="10"></textarea>
+        </div>
+        <!-- <h1>Dosage and Usage</h1>
+        <div *ngIf="!product?.editing" class="productdisplay-right-sizes">
+          <ul>
+            <li type="circle" *ngFor="let dosage of splitdosage">
+              {{ dosage }}
+            </li>
+          </ul>
+        </div> -->
+        <div class="productdisplay-right-description" *ngIf="product?.editing">
+          <textarea *ngIf="product" [(ngModel)]="product.composition" class="form-control" required rows="10"></textarea>
+        </div>
   
         <h1>Indication / Supports</h1>
-        <div class="productdisplay-right-sizes">
+        <div class="productdisplay-right-sizes" *ngIf="!product?.editing">
           <ul>
             <li type="1" *ngFor="let indication of splitindications">
               {{ indication }}
             </li>
           </ul>
         </div>
+        <div class="productdisplay-right-description" *ngIf="product?.editing">
+          <textarea *ngIf="product" [(ngModel)]="product.indication" class="form-control"  required rows="10"></textarea>
+        </div>
       </div>
     </div>
   </div>
+  

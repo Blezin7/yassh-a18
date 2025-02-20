@@ -2,8 +2,26 @@
   <div class="productdisplay-left">
     <div class="productdisplay-img">
       <img class="productdisplay-main-img" [src]="product?.image" alt="{{product?.name}}" />
+      <div class="left">
+      <h1>Dosage and Usage</h1>
+      <ul>
+        <li type="1" *ngFor="let dosage of splitdosage">
+          {{ dosage }}
+        </li>
+      </ul>
     </div>
+    </div>
+    <!-- <h1>Dosage and Usage</h1> -->
+    <!-- <div class="productdisplay-left"> -->
+      <!-- <ul> -->
+        <!-- <h4 type="1" *ngFor="let dosage of splitdosage">
+          {{ dosage }}
+        </h4> -->
+      <!-- </ul> -->
+  
+    <!-- </div> -->
   </div>
+
   <div class="productdisplay-right">
     <button class="btn btn-primary btn-send-message fltbtn" (click)="goBack()">
       <i class="bi bi-arrow-left"></i> 
@@ -36,6 +54,7 @@
         </ul>
 
       </div>
+ 
     </div>
 
   </div>

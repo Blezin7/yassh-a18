@@ -87,6 +87,7 @@ button.btn-primary {
 .addproduct-thumbnail-img {
   width: 100px;
   height: 100px;
+  object-fit: contain;
 }
 .save {
   margin-left: 85%;

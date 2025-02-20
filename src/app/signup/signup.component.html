@@ -93,8 +93,9 @@
               <div class="form-group1">
                 <label for="product-indication">Indication/Support</label>
                 <textarea [(ngModel)]="Indication" name="indication" class="form-control"
-                  placeholder="Indication/Support" id="product-indication" required rows="2"></textarea>
+                  placeholder="Indication/Support" id="product-indication" required rows="5"></textarea>
               </div>
+              
             </div>
 
             <!-- Right Column -->
@@ -111,7 +112,12 @@
               <div class="form-group1">
                 <label for="product-composition">Composition</label>
                 <textarea [(ngModel)]="Composition" name="composition" class="form-control" placeholder="Composition"
-                  id="product-composition" required rows="4"></textarea>
+                  id="product-composition" required rows="2"></textarea>
+              </div>
+              <div class="form-group1">
+                <label for="product-Dosage">Dosage and Usage </label>
+                <textarea [(ngModel)]="Dosage" name="dosage" class="form-control" placeholder="Dosage and Usage"
+                  id="product-Dosage" required rows="2"></textarea>
               </div>
             </div>
           </div>
@@ -201,6 +207,7 @@
                 <th>Category</th>
                 <th>Indication</th>
                 <th>Composition</th>
+                <th>Dosage and Usage</th>
                 <th>Details</th>
                 <th>Actions</th>
               </tr>
@@ -260,7 +267,13 @@
                 <td *ngIf="product.editing">
                   <textarea [(ngModel)]="product.composition" class="form-control" ></textarea>
                 </td>
-
+                <!-- Dosage and Usage -->
+                <td *ngIf="!product.editing" class="text-truncate" [title]="product.dosage">
+                  {{ product.dosage }}
+                </td>
+                <td *ngIf="product.editing">
+                  <textarea [(ngModel)]="product.dosage" class="form-control" ></textarea>
+                </td>
                 <!-- Details -->
                 <td *ngIf="!product.editing" class="text-truncate" [title]="product.details">
                   {{ product.details }}
@@ -271,15 +284,15 @@
 
                 <!-- Actions -->
                 <td class="but">
-                  <button class="btn btn-warning" (click)="editProduct(product)" *ngIf="!product.editing" title="Edit">
+                  <!-- <button class="btn btn-warning" (click)="editProduct(product)" *ngIf="!product.editing" title="Edit">
                     <i class="bi bi-pencil"></i>
                   </button>
                   <button class="btn btn-success" (click)="updateProduct(product)" *ngIf="product.editing" title="Save">
                     <i class="bi bi-save"></i>
-                  </button>
-                  <button class="btn btn-warning" (click)="cancelEdit(product)" *ngIf="product.editing" title="Cancel">
+                  </button> -->
+                  <!-- <button class="btn btn-warning" (click)="cancelEdit(product)" *ngIf="product.editing" title="Cancel">
                     <i class="bi bi-x-circle"></i>
-                  </button>
+                  </button> -->
                   <button class="btn btn-danger" (click)="deleteProduct(product)" title="Delete">
                     <i class="bi bi-trash"></i>
                   </button>
