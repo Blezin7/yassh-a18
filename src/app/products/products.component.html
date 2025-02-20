@@ -2,18 +2,18 @@
   <div class="products-header">
     <h1 class="colorlib-heading head">Our Products</h1>
     <div class="tabs-wrapper">
-      <i class="bi bi-chevron-left"style="font-size: 15px;" (click)="scrollTabs(tabsContainer, -200)"></i> 
-    <div class="tabs" #tabsContainer>
-      <a
-        *ngFor="let product of productDetails | keyvalue"
-        [routerLink]="'proditem/' + product.key"
-        routerLinkActive="active"
-        class="tab"
-        (click)="onTabClick($event, product.key)"
-      >
-        {{ formatProductName(product.value) }}
-      </a>
-    </div>
+      <i class="bi bi-chevron-left" style="font-size: 15px;" (click)="scrollTabs(tabsContainer, -200)"></i> 
+      <div class="tabs" #tabsContainer>
+        <a
+          *ngFor="let product of sortedProductDetails"
+          [routerLink]="'proditem/' + product.key"
+          routerLinkActive="active"
+          class="tab"
+          (click)="onTabClick($event, product.key)"
+        >
+          {{ formatProductName(product.value) }}
+        </a>
+      </div>
       <i class="bi bi-chevron-right" style="font-size: 15px;" (click)="scrollTabs(tabsContainer, 200)"></i> 
     </div>
   </div>

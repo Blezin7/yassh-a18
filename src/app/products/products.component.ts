@@ -6,7 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit,AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
   @ViewChild('tabsContainer', { static: false }) tabsContainer!: ElementRef;
   private scrollPosition: number = 0;
 
@@ -25,9 +25,16 @@ export class ProductsComponent implements OnInit,AfterViewInit {
     '10': 'general-well-being'
   };
 
+  sortedProductDetails: { key: string, value: string }[] = [];
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    // Sort productDetails by numeric key before using it
+    this.sortedProductDetails = Object.entries(this.productDetails)
+      .map(([key, value]) => ({ key, value }))
+      .sort((a, b) => Number(a.key) - Number(b.key));
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         setTimeout(() => {
@@ -39,6 +46,7 @@ export class ProductsComponent implements OnInit,AfterViewInit {
       }
     });
   }
+
   ngAfterViewInit(): void {
     setTimeout(() => {
       const savedScroll = sessionStorage.getItem('tabsScrollPosition');
@@ -47,7 +55,7 @@ export class ProductsComponent implements OnInit,AfterViewInit {
       }
     }, 0);
   }
-
+  
   setActiveTab(tab: string): void {
     this.activeTab = tab;
   }
@@ -55,19 +63,21 @@ export class ProductsComponent implements OnInit,AfterViewInit {
   formatProductName(value: string): string {
     return value.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
   }
-  scrollTabs(container: HTMLElement, amount:number): void {
-    container.scrollBy({left:amount,behavior:'smooth'})
+
+  scrollTabs(container: HTMLElement, amount: number): void {
+    container.scrollBy({ left: amount, behavior: 'smooth' });
   }
-  showTab(event:Event):void{
+
+  showTab(event: Event): void {
     const tabElement = event.target as HTMLElement;
-    if(tabElement){
-      tabElement.scrollIntoView({behavior:'smooth',inline:'center'})
+    if (tabElement) {
+      tabElement.scrollIntoView({ behavior: 'smooth', inline: 'center' });
     }
   }
+
   onTabClick(event: Event, productKey: string): void {
     if (this.tabsContainer) {
-      // Save scroll position before navigating
       sessionStorage.setItem('tabsScrollPosition', this.tabsContainer.nativeElement.scrollLeft.toString());
     }
-  } 
+  }
 }
