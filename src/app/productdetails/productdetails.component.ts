@@ -17,14 +17,16 @@ export class ProductdetailsComponent implements OnInit {
   dbProducts: DBC[] = [];
   filteredProducts: DBC[] = [];
   loader: boolean = true;
-  productObj: DBC = { 
-    id: '', 
-    productCategories: [], 
-    name: '', 
-    image: '', 
-    details: '', 
-    composition: '', 
-    indication: '' 
+  productObj: DBC = {
+    id: '',
+    productCategories: [],
+    name: '',
+    image: '',
+    details: '',
+    composition: '',
+    dosage: '',
+    package: '',
+    indication: '',
   };
 
   productCategories: string[] = [
@@ -32,10 +34,12 @@ export class ProductdetailsComponent implements OnInit {
     "Women's Health",
     "Men's Health",
     'Nerve Health',
-    'GI Health',
-    'Renal Health',
+    'Digestive & Liver Health',
     'Immunomodulator',
     'Sleepcare',
+    'Skin & Hair Care',
+    'Cardiovascular Health',
+    'General well being',
   ];
 
   constructor(
@@ -67,9 +71,8 @@ export class ProductdetailsComponent implements OnInit {
       }
       this.filterProducts();
     });
-    
   }
-  
+
   getAll(): void {
     this.fsds.getAll().subscribe(
       (res) => {
@@ -103,7 +106,9 @@ export class ProductdetailsComponent implements OnInit {
   }
 
   onProductClick(id: number): void {
-    this.selectedProduct = this.allProducts.find((product) => product.id === id);
+    this.selectedProduct = this.allProducts.find(
+      (product) => product.id === id
+    );
 
     if (this.selectedProduct?.explanation) {
       this.splitexp = this.selectedProduct.explanation

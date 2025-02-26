@@ -24,25 +24,31 @@ export class SignupComponent implements OnInit {
   Name: string = '';
   Details: string = '';
   Composition: string = '';
+  Dosage: string = '';
+  package: string = '';
   Indication: string = '';
   productObj: DBC = {
-    id: '', 
-    productCategories: [], 
-    name: '', 
-    image: '', 
-    details: '', 
-    composition: '', 
-    indication: '' 
+    id: '',
+    productCategories: [],
+    name: '',
+    image: '',
+    details: '',
+    composition: '',
+    dosage: '',
+    package: '',
+    indication: '',
   };
   productCategories: string[] = [
     'Bone Health',
     "Women's Health",
     "Men's Health",
     'Nerve Health',
-    'GI Health',
-    'Renal Health',
+    'Digestive & Liver Health',
     'Immunomodulator',
     'Sleepcare',
+    'Skin & Hair Care',
+    'Cardiovascular Health',
+    'General well being',
   ];
   selectedCategory: string = this.productCategories[0];
   userCategories: string[] = [
@@ -95,12 +101,15 @@ export class SignupComponent implements OnInit {
       if (params['tab']) {
         this.activeTab = params['tab'];
       }
-    })
+    });
     this.contactForm = this.fb.nonNullable.group({
       name: ['', Validators.required],
       selectedUserCategory: [this.selectedUserCategory, Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contactno: ['+65 ', [Validators.required, Validators.pattern('^\\+65\\s[0-9]{8}$')]],
+      contactno: [
+        '+65 ',
+        [Validators.required, Validators.pattern('^\\+65\\s[0-9]{8}$')],
+      ],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -154,19 +163,18 @@ export class SignupComponent implements OnInit {
     });
   }
 
-
   signup(): void {
     if (this.contactForm.invalid) {
       this.toastr.warning('Please fill in all required fields correctly.');
       return;
     }
-    
+
     const email = this.contactForm.value.email;
     const name = this.contactForm.value.name;
     const selectedUserCategory = this.contactForm.value.selectedUserCategory;
     const contactno = this.contactForm.value.contactno;
     const password = this.contactForm.value.password;
-  
+
     this.auth
       .signup(email, name, selectedUserCategory, contactno, password)
       .then(() => {
@@ -194,7 +202,9 @@ export class SignupComponent implements OnInit {
 
     if (file) {
       if (file.size > maxSizeInBytes) {
-        this.toastr.error('File size exceeds 1 MB. Please upload a smaller image.');
+        this.toastr.error(
+          'File size exceeds 1 MB. Please upload a smaller image.'
+        );
         return;
       }
 
@@ -246,18 +256,30 @@ export class SignupComponent implements OnInit {
     this.Image = '';
     this.Details = '';
     this.Composition = '';
+    this.Dosage = '';
+    this.package = '';
     this.Indication = '';
     this.selectedCategory = this.productCategories[0];
   }
 
   addProduct(): void {
-    if (this.Name && this.selectedCategory && this.Image && this.Details && this.Composition && this.Indication) {
+    if (
+      this.Name &&
+      this.selectedCategory &&
+      this.Image &&
+      this.Details &&
+      this.Composition &&
+      this.Dosage &&
+      this.Indication
+    ) {
       this.productObj.id = this.id;
       this.productObj.name = this.Name;
       this.productObj.productCategories = [this.selectedCategory];
       this.productObj.image = this.Image;
       this.productObj.details = this.Details;
+      this.productObj.package = this.package;
       this.productObj.composition = this.Composition;
+      this.productObj.dosage = this.Dosage;
       this.productObj.indication = this.Indication;
 
       this.fsds
@@ -283,7 +305,11 @@ export class SignupComponent implements OnInit {
   }
 
   deleteProduct(product: DBC): void {
-    if (window.confirm('Are you sure you want to delete this product? ' + product.name)) {
+    if (
+      window.confirm(
+        'Are you sure you want to delete this product? ' + product.name
+      )
+    ) {
       this.fsds
         .deleteProduct(product)
         .then(() => {
@@ -299,12 +325,11 @@ export class SignupComponent implements OnInit {
 
   updateProduct(product: DBC): void {
     product.editing = false;
-  
-    // Ensure productCategories is updated properly
+
     if (this.selectedCategory) {
-      product.productCategories = [this.selectedCategory]; 
+      product.productCategories = [this.selectedCategory];
     }
-  
+
     this.fsds
       .updateProduct(product)
       .then(() => {
@@ -316,12 +341,12 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  cancelEdit(product: DBC): void {
-    product.editing = !product.editing;
+  cancelEdit(product: any): void {
+    product.editing = false;
   }
+
   preview(product: any): void {
     this.selectedProduct = product;
     this.router.navigate([`/preview/${product.id}`]);
-  }
-
+  }
 }

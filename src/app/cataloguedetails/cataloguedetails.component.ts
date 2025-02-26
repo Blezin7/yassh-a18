@@ -17,15 +17,19 @@ export class CataloguedetailsComponent implements OnInit {
     2:"Women's Health",
     3:"Men's Health",
     4:'Nerve Health',
-    5:'GI Health',
-    6:'Renal Health',
-    7:'Immunomodulator',
-    8:'Sleepcare',
+    5:'Digestive & Liver Health',
+    6:'Immunomodulator',
+    7:'Sleepcare',
+    8:'Skin & Hair Care',
+    9:'Cardiovascular Health',
+    10:'General well being',
     
   };
   splitdetails: string[] = [];
   splitcomposition: string[] = [];
   splitindications: string[] = [];
+  splitdosage: string[] = [];
+  splitpackage: string[] = [];
 
 
   constructor(
@@ -88,13 +92,19 @@ export class CataloguedetailsComponent implements OnInit {
         console.log('Selected Product:', this.product);
 
         if (this.product?.details) {
-          this.splitdetails = this.splitString(this.product.details,'. ');
+          this.splitdetails = this.splitString(this.product.details,'\n');
         }
         if (this.product?.composition)  {
-          this.splitcomposition = this.splitString(this.product.composition,', ');
+          this.splitcomposition = this.splitString(this.product.composition,'\n');
         }
         if (this.product?.indication)  {
-          this.splitindications = this.splitString(this.product.indication,'. ');
+          this.splitindications = this.splitString(this.product.indication,'\n');
+        }
+        if (this.product?.package)  {
+          this.splitpackage = this.splitString(this.product.package,'\n');
+        }
+        if (this.product?.dosage)  {
+          this.splitdosage = this.splitString(this.product.dosage,'\n');
         }
 
         if (this.dbProducts.length > 0) {

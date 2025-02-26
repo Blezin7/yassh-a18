@@ -1,89 +1,60 @@
 <div id="colorlib-page ">
   <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-  <aside
-    id="colorlib-aside"
-    role="complementary"
-    class="border js-fullheight  class1"
-    
-  >
-    <h1 id="colorlib-logo"  >
-      <a routerLink="/home"
-        ><img src="assets/images/final-logo.png" class="img-responsive"
-      /></a>
+  <aside id="colorlib-aside" role="complementary" class="border js-fullheight  class1">
+    <h1 id="colorlib-logo">
+      <a routerLink="/home"><img src="assets/images/final-logo.png" class="img-responsive" /></a>
     </h1>
-    <nav id="colorlib-main-menu" role="navigation" class="navbar" >
+    <nav id="colorlib-main-menu" role="navigation" class="navbar">
       <ul>
-        <li routerLinkActive="colorlib-active"  >
-          <a routerLink="/home" (click)="closeMobileMenu()" class="nav-item"
-            ><i
-              class="bi bi-house icon"
-             
-            ></i
-          > <span class="nav-text">Home</span></a>
+        <li routerLinkActive="colorlib-active">
+          <a routerLink="/home" (click)="closeMobileMenu()" class="nav-item"><i class="bi bi-house icon"></i> <span
+              class="nav-text">Home</span></a>
         </li>
-       
-        <li routerLinkActive="colorlib-active"  >
+
+        <li routerLinkActive="colorlib-active">
           <a routerLink="/about-us" (click)="closeMobileMenu()" class="nav-item">
-            <i
-              class="bi bi-info-circle icon"
-            ></i>
+            <i class="bi bi-info-circle icon"></i>
             <span class="nav-text">About Us</span>
           </a>
         </li>
-        <li routerLinkActive="colorlib-active"  >
-          <a routerLink="/products/proditem/1" (click)="closeMobileMenu()" class="nav-item"
-            ><i class="bi bi-bag icon" ></i>
+        <li routerLinkActive="colorlib-active">
+          <a routerLink="/products/proditem/1" (click)="closeMobileMenu()" class="nav-item"><i
+              class="bi bi-bag icon"></i>
             <span class="nav-text">Products</span>
           </a>
         </li>
-        <li  routerLinkActive="colorlib-active"  >
-          <a routerLink="/promotions" (click)="closeMobileMenu()" class="nav-item"
-            ><i
-              class="bi bi-tag icon"
-              
-            ></i>
+        <li routerLinkActive="colorlib-active">
+          <a routerLink="/promotions" (click)="closeMobileMenu()" class="nav-item"><i class="bi bi-tag icon"></i>
             <span class="nav-text">Promotions</span>
           </a>
         </li>
-        <li routerLinkActive="colorlib-active"  >
-          <a routerLink="/join-us" (click)="closeMobileMenu()" class="nav-item"
-            ><i
-              class="bi bi-people icon"
-             
-            ></i>
+        <li routerLinkActive="colorlib-active">
+          <a routerLink="/join-us" (click)="closeMobileMenu()" class="nav-item"><i class="bi bi-people icon"></i>
             <span class="nav-text">Join Us</span>
           </a>
         </li>
-        <li  routerLinkActive="colorlib-active"  >
-          <a routerLink="/contact" (click)="closeMobileMenu()" class="nav-item"
-            ><i
-              class="bi bi-telephone icon"
-             
-            ></i>
+        <li routerLinkActive="colorlib-active">
+          <a routerLink="/contact" (click)="closeMobileMenu()" class="nav-item"><i class="bi bi-telephone icon"></i>
             <span class="nav-text">Contact</span>
           </a>
         </li>
         <li routerLinkActive="colorlib-active" *ngIf="adminOnly()">
           <a routerLink="/signup" (click)="closeMobileMenu()" class="nav-item">
-            <i
-              class="bi bi-person-plus icon"
-            ></i>
+            <i class="bi bi-person-plus icon"></i>
             <span class="nav-text">Admin Panel</span>
           </a>
         </li>
         <li routerLinkActive="colorlib-active" *ngIf="currentUser">
           <a routerLink="/login" (click)="logOut()" class="nav-item">
-            <i
-              class="bi bi-box-arrow-right icon"
-            ></i>
+            <i class="bi bi-box-arrow-right icon"></i>
             <span class="nav-text">Logout</span>
           </a>
         </li>
         <li class="smoke"></li>
-    </ul>
-</nav>
+      </ul>
+    </nav>
 
-</aside>
+  </aside>
   <div id="colorlib-main">
     <router-outlet></router-outlet>
     <div id="get-in-touch" class="colorlib-bg-color footer">
@@ -94,10 +65,8 @@
             <p class="colorlib-lead">
               50, Kallang Pudding Road, #05-01 AMA Building, Singapore 349326
             </p>
-            <p  >
-              <a routerLink="/contact" class="btn btn-primary btn-message"
-                >Contact Us</a
-              >
+            <p>
+              <a routerLink="/contact" class="btn btn-primary btn-message">Contact Us</a>
             </p>
             <div class="colorlib-footer">
               <!-- <ul class="socicon">
@@ -114,48 +83,55 @@
                   <a href="#"><i class="icon-linkedin2"></i></a>
                 </li>
               </ul> -->
-              <p ><small class="cop"> Copyright &copy; 2025 </small></p>
+              <p><small class="cop"> Copyright &copy; 2025 </small></p>
             </div>
-          
+
           </div>
           <div class="col-md-3">
             <h4 style="margin-bottom: 10px">Medical Channel</h4>
             <ul>
-              <li  >
+              <li>
                 <a routerLink="/products/proditem/1">Bone Health</a>
               </li>
-              <li  >
+              <li>
                 <a routerLink="/products/proditem/2">Women's Health</a>
               </li>
-              <li  >
+              <li>
                 <a routerLink="/products/proditem/3">Men's Health</a>
               </li>
-              <li  >
+              <li>
                 <a routerLink="/products/proditem/4">Nerve Health</a>
               </li>
-              <li  >
-                <a routerLink="/products/proditem/5">GI Health</a>
+              <li>
+                <a routerLink="/products/proditem/5">Digestive & Liver Health</a>
               </li>
-              <li  >
-                <a routerLink="/products/proditem/6">Renal Health</a>
+           
+              <li>
+                <a routerLink="/products/proditem/6">Immunomodulator</a>
               </li>
-              <li  >
-                <a routerLink="/products/proditem/7">Immunomodulator</a>
+              <li>
+                <a routerLink="/products/proditem/7">Sleepcare</a>
               </li>
-              <li  >
-                <a routerLink="/products/proditem/8">Sleepcare</a>
+              <li>
+                <a routerLink="/products/proditem/8">Skin & Hair Care</a>
+              </li>
+              <li>
+                <a routerLink="/products/proditem/9">Cardiovascular Health</a>
+              </li>
+              <li>
+                <a routerLink="/products/proditem/10">GeneralL well being</a>
               </li>
             </ul>
           </div>
           <div class="col-md-3">
             <h4 style="margin-bottom: 10px">Sitemap</h4>
             <ul>
-              <li  ><a routerLink="/about-us">About Us</a></li>
-              <li  ><a routerLink="/about-us">- Vision</a></li>
-              <li  >
+              <li><a routerLink="/about-us">About Us</a></li>
+              <li><a routerLink="/about-us">- Vision</a></li>
+              <li>
                 <a routerLink="/about-us">- Mission</a>
               </li>
-              <li  >
+              <li>
                 <a routerLink="/about-us">- Our Core Values</a>
               </li>
             </ul>
@@ -163,8 +139,8 @@
           <div class="col-md-2">
             <h4 style="margin-bottom: 10px">Others</h4>
             <ul>
-              <li  ><a routerLink="/career">Career</a></li>
-              <li  >
+              <li><a routerLink="/career">Career</a></li>
+              <li>
                 <a routerLink="/team-work">Teamwork</a>
               </li>
             </ul>

@@ -2,20 +2,36 @@
   padding: 20px;
   max-width: 1200px;
   margin: auto;
-.head{
-  margin-left: 2%;
-}
+
+  .head {
+    margin-left: 7%;
+  }
+
   .products-header {
     .heading {
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 20px;
     }
+    
+    .tabs-wrapper {
+      display: flex;
+      align-items: center;
+      margin: 0 55px;
+      gap: 10px;
+    }
+
     .tabs {
       display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 5px;
+      gap: 10px;
+      overflow-x: auto; /* Enables horizontal scrolling */
+      white-space: nowrap; /* Prevents wrapping */
+      scrollbar-width: none; /* Hides scrollbar in Firefox */
+      -ms-overflow-style: none; /* Hides scrollbar in IE & Edge */
+        flex-grow: 1;
+      &::-webkit-scrollbar {
+        display: none; /* Hides scrollbar in Chrome & Safari */
+      }
 
       .tab {
         text-decoration: none;
@@ -24,20 +40,18 @@
         padding: 10px 10px;
         border-bottom: 2px solid transparent;
         transition: all 0.3s;
+        flex-shrink: 0; /* Prevents shrinking */
 
         &.active {
-          color:  #019fbe;
-          border-bottom: 2px solid  #019fbe;
+          color: #019fbe;
+          border-bottom: 2px solid #019fbe;
         }
 
         &:hover {
-          color:  #019fbe;
+          color: #019fbe;
         }
       }
     }
-  }
-  .tabs a{
-    margin-left: 20px;
   }
 
   .product-content {
@@ -48,15 +62,25 @@
     color: #555;
   }
 }
+i:hover{
+  color: white;
+  background: #019fbe;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+  border-radius: 50px;
+  
+}
+
+
 @media (max-width: 768px) {
   .products-container {
     padding: 10px;
 
     .products-header {
       .tabs {
-        flex-direction: column;
+        flex-direction: row; /* Ensures it remains a row */
       }
     }
   }
 }
-

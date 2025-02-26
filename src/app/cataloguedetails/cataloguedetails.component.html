@@ -1,12 +1,29 @@
 <div class="productdisplay">
   <div class="productdisplay-left">
     <div class="productdisplay-img">
-      <img class="productdisplay-main-img" [src]="product?.image" alt="{{product?.name}}" />
+      <img class="productdisplay-main-img" [src]="product?.image" alt="{{ product?.name }}" />
+      <div class="left">
+        <h1>Dosage and Usage</h1>
+        <ul>
+          <li type="1" *ngFor="let dosage of splitdosage">
+            {{ dosage }}
+          </li>
+        </ul>
+        <h1>Packaging Size</h1>
+        <div class="productdisplay-right-sizes">
+          <ul>
+            <li type="1" *ngFor="let package of splitpackage">
+              {{ package }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="productdisplay-right">
     <button class="btn btn-primary btn-send-message fltbtn" (click)="goBack()">
-      <i class="bi bi-arrow-left"></i> 
+      <i class="bi bi-arrow-left"></i>
     </button>
     <h1>{{ product?.name }}</h1>
     <div class="productdisplay-right-description">
@@ -20,11 +37,10 @@
       <h1>Composition</h1>
       <div class="productdisplay-right-sizes">
         <ul>
-          <li  type="circle" *ngFor="let composition of splitcomposition">
+          <li type="circle" *ngFor="let composition of splitcomposition">
             {{ composition }}
           </li>
         </ul>
-
       </div>
 
       <h1>Indication / Supports</h1>
@@ -34,12 +50,9 @@
             {{ indication }}
           </li>
         </ul>
-
       </div>
     </div>
-
   </div>
-
 </div>
 <div class="name">
   <h1 class="colorlib-heading">Similar Products</h1>
@@ -48,23 +61,23 @@
 <div class="products">
   <div class="product-list">
     <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
-    <a class="card-main" *ngFor="let product of filteredProducts" (click)="goToDetails(product.id)">
-      <div class="card-container">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="image-container">
-              <img [src]="product.image" [alt]="product.name" />
-            </div>
-            <div class="product-info">
-              <h2>{{ product.name }}</h2>
+      <a class="card-main" *ngFor="let product of filteredProducts" (click)="goToDetails(product.id)">
+        <div class="card-container">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="image-container">
+                <img [src]="product.image" [alt]="product.name" />
+              </div>
+              <div class="product-info">
+                <h2>{{ product.name }}</h2>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </a>
-  </ng-container>
-  <ng-template #noProducts>
-    <p>No similar products found.</p>
-  </ng-template>
+      </a>
+    </ng-container>
+    <ng-template #noProducts>
+      <p>No similar products found.</p>
+    </ng-template>
   </div>
 </div>

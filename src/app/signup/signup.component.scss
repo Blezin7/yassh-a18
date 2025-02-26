@@ -87,6 +87,7 @@ button.btn-primary {
 .addproduct-thumbnail-img {
   width: 100px;
   height: 100px;
+  object-fit: contain;
 }
 .save {
   margin-left: 85%;
@@ -290,6 +291,12 @@ td.but button {
 .submit{
   width:40%;
   max-width: 120px;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }
 /* Responsive Design */
 @media (max-width:1222px){
