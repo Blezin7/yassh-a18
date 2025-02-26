@@ -125,7 +125,7 @@
     <div *ngIf="product?.editing">
       <input *ngIf="product" [(ngModel)]="product.name" class="form-control" />
     </div>
-    <div *ngIf="!product?.editing" class="productdisplay-right-description">
+    <div *ngIf="!product?.editing" class="productdisplay-right-sizes">
       <ul>
         <li type="disc" *ngFor="let detail of splitdetails">
           {{ detail }}
